@@ -14,7 +14,8 @@ An ASP.NET Web Forms application for building and managing AI-assisted resumes �
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
-  - [Setup](#setup)
+  - [Setup (one command)](#setup-one-command)
+  - [Manual Setup](#manual-setup)
   - [Running the Project](#running-the-project)
 - [Development Workflow](#development-workflow)
 - [Roadmap](#roadmap)
@@ -40,7 +41,7 @@ The long-term goal is to layer in AI-assisted resume review/generation (LLM-base
 
 | Layer          | Technology                          |
 |----------------|--------------------------------------|
-| Framework      | ASP.NET Web Forms (.NET Framework)   |
+| Framework      | ASP.NET Web Forms (.NET Framework 4.8.1) |
 | Language       | C#                                    |
 | IDE            | Visual Studio 2022                    |
 | UI             | Web Forms (`.aspx` / `.aspx.cs`), `asp:Panel`-based view switching |
@@ -52,44 +53,62 @@ The long-term goal is to layer in AI-assisted resume review/generation (LLM-base
 ```
 AI-Resume-WebApplication/
 ├── AI-Resume WebApplication/          # Main Web Forms project
-│   ├── App_Code/                      # Shared classes (AppPageBase.cs, helpers)
-│   ├── Content/                       # CSS, images, static assets
-│   ├── Scripts/                       # JS files
+│   ├── assets/                        # CSS, JS, animations, static assets
 │   ├── Website.Master                 # Single unified master page
+│   ├── AppPageBase.cs                 # Shared base page class
 │   ├── *.aspx / *.aspx.cs             # Web Forms pages + code-behind
+│   ├── packages.config                # NuGet dependency list
 │   └── Web.config                     # App configuration
 ├── AI-Resume WebApplication.sln       # Visual Studio solution file
+├── NuGet.Config                       # Pinned NuGet source (nuget.org)
+├── setup.bat                          # One-click restore + build script
 ├── .gitignore
 ├── .gitattributes
 ├── LICENSE.txt
 └── README.md
 ```
 
-*(Update this tree as the project grows — this reflects the current planned layout.)*
-
 ## Getting Started
 
 ### Prerequisites
 
 - **Visual Studio 2022** (Community edition or higher) with the **ASP.NET and web development** workload installed
-- **.NET Framework Developer Pack** (matching the version targeted by the project — check `Web.config` / project properties)
+- **.NET Framework 4.8.1 Developer Pack**
 - **IIS Express** (bundled with Visual Studio, used for local debugging)
 - Git
+- Internet access (`setup.bat` downloads `nuget.exe` on first run if it's not already present)
 
-### Setup
+### Setup (one command)
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Jaiminsinh-Dodiya/AI-Resume-WebApplication.git
-   cd AI-Resume-WebApplication
-   ```
-2. Open `AI-Resume WebApplication.sln` in Visual Studio 2022.
-3. Let Visual Studio restore NuGet packages automatically on load. If it doesn't:
+The fastest way to get a working build after cloning:
+
+```bash
+git clone https://github.com/Jaiminsinh-Dodiya/AI-Resume-WebApplication.git
+cd AI-Resume-WebApplication
+setup.bat
+```
+
+`setup.bat` will automatically:
+
+1. Download `nuget.exe` into a local `tools/` folder (skipped if already present)
+2. Restore all NuGet packages listed in `packages.config`
+3. Locate `MSBuild.exe` on your machine via `vswhere` (works with any VS2022 edition — Community, Professional, Enterprise, or just Build Tools)
+4. Build the solution (`Debug | Any CPU`)
+
+If it finishes without errors, the project is fully restored and compiled — just open the `.sln` and press F5.
+
+### Manual Setup
+
+If you'd rather not run the script, or `setup.bat` fails on your machine:
+
+1. Open `AI-Resume WebApplication.sln` in Visual Studio 2022.
+2. Let Visual Studio restore NuGet packages automatically on load. If it doesn't:
    - Right-click the **Solution** in Solution Explorer → **Restore NuGet Packages**
    - Or via CLI from the solution folder:
      ```bash
      nuget restore "AI-Resume WebApplication.sln"
      ```
+3. Build the solution (**Build → Rebuild Solution**).
 
 ### Running the Project
 
@@ -99,10 +118,10 @@ AI-Resume-WebApplication/
 
 ## Development Workflow
 
-- Work directly on `master` for small/solo academic milestones, or create feature branches (`feature/register-page`, `feature/ai-integration`) for larger additions and merge back via PR — even solo, this keeps history readable.
+- Work directly on `master`/`development` for small/solo academic milestones, or create feature branches (`feature/register-page`, `feature/ai-integration`) for larger additions and merge back via PR — even solo, this keeps history readable.
 - Commit early and often with descriptive messages (see suggested convention below).
-- Keep `bin/`, `obj/`, and `packages/` (if using packages.config) out of source control — see `.gitignore`.
-- Before pushing, do a clean rebuild (`Build → Clean Solution` then `Build → Rebuild Solution`) to make sure nothing relies on stale/local-only state.
+- Keep `bin/`, `obj/`, `.vs/`, `packages/`, and `tools/` out of source control — see `.gitignore`.
+- Before pushing, do a clean rebuild (`Build → Clean Solution` then `Build → Rebuild Solution`, or re-run `setup.bat`) to make sure nothing relies on stale/local-only state.
 
 **Suggested commit message convention:**
 ```
