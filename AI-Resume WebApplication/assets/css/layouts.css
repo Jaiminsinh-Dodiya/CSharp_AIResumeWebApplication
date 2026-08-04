@@ -1,0 +1,160 @@
+/* ASP.NET Master Page Layout Simulations */
+
+/* ==========================================================================
+   Main Master (Public Pages)
+   ========================================================================== */
+.main-master {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  background: rgba(9, 9, 11, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: var(--space-4) 0;
+}
+
+.main-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.main-footer {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  padding: var(--space-12) 0;
+  margin-top: auto;
+}
+
+
+/* ==========================================================================
+   Dashboard Master (Authenticated Pages)
+   ========================================================================== */
+.dashboard-master {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.dashboard-sidebar {
+  width: 260px;
+  background: var(--bg-base);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  z-index: 40;
+}
+
+.dashboard-sidebar.collapsed {
+  width: 72px;
+}
+
+.sidebar-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: var(--space-4) var(--space-2);
+  overflow-y: auto;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  color: var(--text-muted);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-1);
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background: var(--bg-surface);
+  color: var(--text-main);
+}
+
+.nav-item.active {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.dashboard-sidebar.collapsed .nav-label {
+  display: none;
+}
+
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Prevents flex blowout */
+}
+
+.dashboard-topbar {
+  height: 64px;
+  background: rgba(9, 9, 11, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  z-index: 30;
+}
+
+.dashboard-content-area {
+  flex: 1;
+  padding: var(--space-8);
+  overflow-y: auto;
+}
+
+
+/* ==========================================================================
+   Admin Master
+   ========================================================================== */
+.admin-master {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Shares most styles with Dashboard, but could have unique coloring */
+.admin-master .dashboard-sidebar {
+  background: #000; /* Slightly darker for admin separation */
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.admin-master .nav-item.active {
+  background: rgba(239, 68, 68, 0.15); /* Danger/Red accent for admin */
+  color: #F87171;
+}
+
+/* ==========================================================================
+   Responsive Behavior
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .dashboard-sidebar {
+    position: fixed;
+    transform: translateX(-100%);
+    height: 100%;
+  }
+  .dashboard-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+}
