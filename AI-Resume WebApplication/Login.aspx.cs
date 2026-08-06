@@ -28,6 +28,8 @@ namespace AI_Resume_WebApplication
 
             if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
             {
+                // Set session flag for authenticated user
+                Session["IsLoggedIn"] = true;
                 Response.Redirect("Dashboard.aspx");
             }
             else
