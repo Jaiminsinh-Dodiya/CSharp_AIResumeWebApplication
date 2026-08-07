@@ -116,6 +116,20 @@ If you'd rather not run the script, or `setup.bat` fails on your machine:
 2. Press **F5** (or **Ctrl+F5** for no debugging) to launch via IIS Express.
 3. The site will open in your default browser at the assigned `localhost` port.
 
+### Local Database Setup (For Teammates)
+
+The database binary files (`.mdf`) are excluded from Git to prevent merge locks. To set up your local database:
+
+1. **Create Local MDF File** (if not present):
+   - In Visual Studio Solution Explorer, right-click `App_Data` folder → **Add** → **New Item...** → **Data** → **SQL Server Database**.
+   - Name it `ApplicationDatabase.mdf`.
+2. **Execute Schema Script**:
+   - Double-click `ApplicationDatabase.mdf` in Solution Explorer to open it in **Server Explorer**.
+   - Right-click `ApplicationDatabase.mdf` in **Server Explorer** → **New Query**.
+   - Copy the SQL code from `App_Data/schema.sql` into the query window and press **Execute** (`Ctrl` + `Shift` + `E`).
+
+---
+
 ## Development Workflow
 
 - Work directly on `master`/`development` for small/solo academic milestones, or create feature branches (`feature/register-page`, `feature/ai-integration`) for larger additions and merge back via PR — even solo, this keeps history readable.

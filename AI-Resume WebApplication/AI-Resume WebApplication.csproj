@@ -67,6 +67,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ApplicationDatabase.mdf" />
+    <Content Include="App_Data\ApplicationDatabase_log.ldf">
+      <DependentUpon>ApplicationDatabase.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\schema.sql" />
     <Content Include="Web.config" />
     <Content Include="Website.Master" />
     <Content Include="Default.aspx" />
