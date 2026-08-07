@@ -1,5 +1,6 @@
 using System;
 using System.Web.UI;
+using System.Web;   
 
 namespace AI_Resume_WebApplication
 {
@@ -24,9 +25,8 @@ namespace AI_Resume_WebApplication
             {
                 site.ShowSidebar = true;
 
-                // Front-end only for now — no database/auth is wired up yet,
-                // so we simply pretend a user is signed in for UI purposes.
-                site.IsLoggedIn = true;
+                var isLoggedIn = HttpContext.Current?.Session["IsLoggedIn"] as bool? ?? false;
+                site.IsLoggedIn = isLoggedIn;
             }
             base.OnPreRender(e);
         }

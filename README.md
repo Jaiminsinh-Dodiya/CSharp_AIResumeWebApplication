@@ -116,6 +116,48 @@ If you'd rather not run the script, or `setup.bat` fails on your machine:
 2. Press **F5** (or **Ctrl+F5** for no debugging) to launch via IIS Express.
 3. The site will open in your default browser at the assigned `localhost` port.
 
+### Local Database & Connection Setup
+
+The binary database files (`.mdf` / `.ldf`) are deliberately excluded from Git via `.gitignore` to prevent file locking and binary merge conflicts. Every developer maintains their own local database file generated from `App_Data/schema.sql`.
+
+#### 1. Connection String Configuration
+The connection string is pre-configured in [Web.config](file:///d:/Repo/AI-Resume-WebApplication/AI-Resume%20WebApplication/Web.config):
+
+```xml
+<connectionStrings>
+  <add name="DefaultConnection" 
+       connectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ApplicationDatabase.mdf;Integrated Security=True" 
+       providerName="System.Data.SqlClient" />
+</connectionStrings>
+```
+
+* **`Data Source=(LocalDB)\MSSQLLocalDB`**: Uses SQL Server Express LocalDB bundled with Visual Studio.
+* **`AttachDbFilename=|DataDirectory|\ApplicationDatabase.mdf`**: Dynamically attaches the `.mdf` database file located in the project's `App_Data` folder.
+
+#### 2. Initializing Your Local Database (1-Minute Setup)
+
+1. **Create the Local `.mdf` File**:
+   - In Visual Studio Solution Explorer, right-click the **`App_Data`** folder → **Add** → **New Item...**
+   - Select **Data** → **SQL Server Database**.
+   - Set the name to `ApplicationDatabase.mdf` and click **Add**.
+2. **Execute Schema & Seed Data**:
+   - Double-click **`ApplicationDatabase.mdf`** in Solution Explorer to connect it in **Server Explorer** (a green plug icon will appear).
+   - In **Server Explorer**, right-click `ApplicationDatabase.mdf` → **New Query**.
+   - Open **`App_Data/schema.sql`**, copy all content (`Ctrl+A`, `Ctrl+C`), paste into the query window, and click **Execute** (`Ctrl` + `Shift` + `E` or green play button ▶️).
+
+#### 3. Database Schema Overview
+* **`Users` Table**: Contains registration fields (`FullName`, `Email`, `Gender`, `Country`, `Dob`, `Phone`, `CityState`, `Languages`, `TargetJobTitle`, `Role`, `ExperienceLevel`, `Industry`, `PrimarySkills`, `JobSearchStatus`, `LinkedInUrl`, `PortfolioUrl`, `Password`, `CreatedAt`).
+* Bound directly to `GridView1` in `Register.aspx` for visual verification.
+
+#### 4. Troubleshooting Connection Issues
+* **LocalDB Not Started**: Open Developer Command Prompt or PowerShell and run:
+  ```cmd
+  sqllocaldb start MSSQLLocalDB
+  ```
+* **Database File Locked**: If Visual Studio throws a file lock error on `ApplicationDatabase.mdf`, right-click the IIS Express tray icon and click **Stop Site**, or restart Visual Studio.
+
+---
+
 ## Development Workflow
 
 - Work directly on `master`/`development` for small/solo academic milestones, or create feature branches (`feature/register-page`, `feature/ai-integration`) for larger additions and merge back via PR — even solo, this keeps history readable.

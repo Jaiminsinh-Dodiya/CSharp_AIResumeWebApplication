@@ -26,6 +26,8 @@ x86/
 project.lock.json
 project.fragment.lock.json
 artifacts/
+nuget.exe
+*.exe
 
 # setup.bat downloads nuget.exe here on first run — local tool, not source
 tools/
