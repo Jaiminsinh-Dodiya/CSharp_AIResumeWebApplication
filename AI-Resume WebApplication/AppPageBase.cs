@@ -24,9 +24,6 @@ namespace AI_Resume_WebApplication
             if (site != null)
             {
                 site.ShowSidebar = true;
-
-                var isLoggedIn = HttpContext.Current?.Session["IsLoggedIn"] as bool? ?? false;
-                site.IsLoggedIn = isLoggedIn;
             }
             base.OnPreRender(e);
         }

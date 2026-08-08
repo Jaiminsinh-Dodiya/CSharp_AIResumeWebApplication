@@ -118,10 +118,11 @@ If you'd rather not run the script, or `setup.bat` fails on your machine:
 
 ### Local Database & Connection Setup
 
-The binary database files (`.mdf` / `.ldf`) are deliberately excluded from Git via `.gitignore` to prevent file locking and binary merge conflicts. Every developer maintains their own local database file generated from `App_Data/schema.sql`.
+The binary database files (`.mdf` / `.ldf`) are deliberately excluded from Git via `.gitignore` to prevent file locking and binary merge conflicts. Every developer maintains their own local database or file generated from `App_Data/schema.sql`.
 
-#### 1. Connection String Configuration
-The connection string is pre-configured in [Web.config](file:///d:/Repo/AI-Resume-WebApplication/AI-Resume%20WebApplication/Web.config):
+#### 1. Connection String Configuration (`Web.config`)
+
+The connection string is pre-configured out-of-the-box in `AI-Resume WebApplication/Web.config`:
 
 ```xml
 <connectionStrings>
@@ -131,30 +132,57 @@ The connection string is pre-configured in [Web.config](file:///d:/Repo/AI-Resum
 </connectionStrings>
 ```
 
-* **`Data Source=(LocalDB)\MSSQLLocalDB`**: Uses SQL Server Express LocalDB bundled with Visual Studio.
-* **`AttachDbFilename=|DataDirectory|\ApplicationDatabase.mdf`**: Dynamically attaches the `.mdf` database file located in the project's `App_Data` folder.
+##### How developers/teammates can customize their connection string:
 
-#### 2. Initializing Your Local Database (1-Minute Setup)
+* **Scenario A: Using LocalDB with a different `.mdf` file name**  
+  If your `.mdf` file is named something else (e.g. `MyResumeDB.mdf`), simply update `AttachDbFilename` in `Web.config`:
+  ```xml
+  <add name="DefaultConnection" 
+       connectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\MyResumeDB.mdf;Integrated Security=True" 
+       providerName="System.Data.SqlClient" />
+  ```
 
-1. **Create the Local `.mdf` File**:
+* **Scenario B: Using full SQL Server / SSMS**  
+  If hosting on a local SQL Server instance or SQL Server Express, update `Web.config` to point to your database name:
+  ```xml
+  <add name="DefaultConnection" 
+       connectionString="Data Source=localhost;Initial Catalog=AI_Resume_DB;Integrated Security=True" 
+       providerName="System.Data.SqlClient" />
+  ```
+
+---
+
+#### 2. Initializing Your Local Database from `schema.sql`
+
+Can we create/update the database structure from a `.sql` file? **Yes!** The file `App_Data/schema.sql` contains the complete schema and seed data. It will create tables and sample data regardless of your `.mdf` file name or SQL Server setup.
+
+1. **Option 1: Via Visual Studio (LocalDB)**:
    - In Visual Studio Solution Explorer, right-click the **`App_Data`** folder → **Add** → **New Item...**
    - Select **Data** → **SQL Server Database**.
-   - Set the name to `ApplicationDatabase.mdf` and click **Add**.
-2. **Execute Schema & Seed Data**:
-   - Double-click **`ApplicationDatabase.mdf`** in Solution Explorer to connect it in **Server Explorer** (a green plug icon will appear).
-   - In **Server Explorer**, right-click `ApplicationDatabase.mdf` → **New Query**.
-   - Open **`App_Data/schema.sql`**, copy all content (`Ctrl+A`, `Ctrl+C`), paste into the query window, and click **Execute** (`Ctrl` + `Shift` + `E` or green play button ▶️).
+   - Set any database name (e.g., `ApplicationDatabase.mdf`) and click **Add**.
+   - Double-click your `.mdf` file to open **Server Explorer**.
+   - Right-click the database connection → **New Query**.
+   - Open **`App_Data/schema.sql`**, copy all text (`Ctrl+A`, `Ctrl+C`), paste into the query window, and click **Execute** (`Ctrl` + `Shift` + `E` or ▶️).
+
+2. **Option 2: Via SQL Server Management Studio (SSMS)**:
+   - Open SSMS and connect to your SQL Server instance.
+   - Create a new database (e.g. `AI_Resume_DB`).
+   - Open **`App_Data/schema.sql`**, select your new database, and click **Execute**.
+
+---
 
 #### 3. Database Schema Overview
 * **`Users` Table**: Contains registration fields (`FullName`, `Email`, `Gender`, `Country`, `Dob`, `Phone`, `CityState`, `Languages`, `TargetJobTitle`, `Role`, `ExperienceLevel`, `Industry`, `PrimarySkills`, `JobSearchStatus`, `LinkedInUrl`, `PortfolioUrl`, `Password`, `CreatedAt`).
-* Bound directly to `GridView1` in `Register.aspx` for visual verification.
+* Bound to user registration and user management forms.
+
+---
 
 #### 4. Troubleshooting Connection Issues
 * **LocalDB Not Started**: Open Developer Command Prompt or PowerShell and run:
   ```cmd
   sqllocaldb start MSSQLLocalDB
   ```
-* **Database File Locked**: If Visual Studio throws a file lock error on `ApplicationDatabase.mdf`, right-click the IIS Express tray icon and click **Stop Site**, or restart Visual Studio.
+* **Database File Locked**: If Visual Studio throws a file lock error on your `.mdf` file, right-click the IIS Express tray icon and click **Stop Site**, or restart Visual Studio.
 
 ---
 
