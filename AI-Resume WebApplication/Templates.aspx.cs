@@ -7,12 +7,6 @@ namespace AI_Resume_WebApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var isLoggedIn = Session["IsLoggedIn"] as bool? ?? false;
-            if (!isLoggedIn)
-            {
-                Response.Redirect("Login.aspx");
-                return;
-            }
         }
     }
 }

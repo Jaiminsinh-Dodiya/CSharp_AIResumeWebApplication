@@ -4,7 +4,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div style="display: flex; align-items: center; justify-content: center; min-height: 85vh; padding: var(--space-8) var(--space-4);">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 85vh; padding: var(--space-8) var(--space-4);">
         <div class="glass-card glow-border animate-fade-up" style="width: 100%; max-width: 840px; padding: var(--space-8);">
 
             <!-- Header -->
@@ -199,13 +199,26 @@
                 </div>
             </div>
 
-            <!-- SECTION 4: GridView Data View -->
-            <div style="margin-bottom: var(--space-6); overflow-x: auto;">
+            <!-- Agreement & Action -->
+            <div class="flex items-center gap-2" style="margin-bottom: var(--space-6);">
+                <asp:CheckBox ID="chkTerms" runat="server" Text="I agree to the Terms of Service, Privacy Policy, and AI Data Processing Policy" Style="font-size: var(--text-xs); color: var(--text-secondary);" />
+            </div>
+
+            <asp:Button ID="btnRegister" runat="server" Text="Create Account &amp; Generate Resume" CssClass="btn btn-primary btn-full" OnClick="btnRegister_Click" ValidationGroup="RegisterGroup" Style="padding: var(--space-4); font-weight: 700; font-size: var(--text-base);" />
+
+            <div style="text-align: center; margin-top: var(--space-6); font-size: var(--text-xs); color: var(--text-secondary);">
+                Already registered? <a href="Login.aspx" style="color: var(--accent-primary); font-weight: 600;">Sign in here</a>
+            </div>
+        </div>
+
+        <!-- Registered Users Grid View (Full Width Table Section) -->
+        <div style="width: 100%; max-width: 100%; margin-top: var(--space-8);">
+            <div class="glass-card glow-border" style="width: 100%; padding: var(--space-6); overflow-x: auto;">
                 <h3 style="font-size: var(--text-base); color: var(--accent-primary); border-bottom: 1px solid var(--glass-border); padding-bottom: 8px; margin-bottom: var(--space-4); display: flex; align-items: center; gap: 8px;">
                     <svg class="icon-svg" style="width: 18px; height: 18px;" viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg>
-                    4. Registered Users Grid View
+                    Registered Users Grid View
                 </h3>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table" Style="width: 100%; border-collapse: collapse; margin-top: var(--space-2);">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table" Style="width: 100%; border-collapse: collapse; margin-top: var(--space-2); white-space: nowrap;">
                     <Columns>
                         <asp:TemplateField HeaderText="Id">
                             <ItemTemplate>
@@ -299,17 +312,6 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-            </div>
-
-            <!-- Agreement & Action -->
-            <div class="flex items-center gap-2" style="margin-bottom: var(--space-6);">
-                <asp:CheckBox ID="chkTerms" runat="server" Text="I agree to the Terms of Service, Privacy Policy, and AI Data Processing Policy" Style="font-size: var(--text-xs); color: var(--text-secondary);" />
-            </div>
-
-            <asp:Button ID="btnRegister" runat="server" Text="Create Account &amp; Generate Resume" CssClass="btn btn-primary btn-full" OnClick="btnRegister_Click" ValidationGroup="RegisterGroup" Style="padding: var(--space-4); font-weight: 700; font-size: var(--text-base);" />
-
-            <div style="text-align: center; margin-top: var(--space-6); font-size: var(--text-xs); color: var(--text-secondary);">
-                Already registered? <a href="Login.aspx" style="color: var(--accent-primary); font-weight: 600;">Sign in here</a>
             </div>
         </div>
     </div>

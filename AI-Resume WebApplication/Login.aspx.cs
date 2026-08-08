@@ -1,35 +1,39 @@
 using System;
 using System.Web.UI;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 
 namespace AI_Resume_WebApplication
 {
     public partial class Login : Page
     {
+        SqlConnection con;
+        SqlDataAdapter da;
+        DataSet ds;
+
+        string s = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+        void getCon()
+        {
+            con = new SqlConnection(s);
+            con.Open();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                if (lblError != null)
-                {
-                    lblError.Visible = false;
-                }
-            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (!Page.IsValid)
-            {
-                return;
-            }
+            getCon();
+            string command = "select * from Users where Email='" + txtEmail.Text + "' and Password='" + txtPassword.Text + "'";
+            da = new SqlDataAdapter(command, con);
+            ds = new DataSet();
+            da.Fill(ds);
 
-            string email = txtEmail != null ? txtEmail.Text.Trim() : string.Empty;
-            string password = txtPassword != null ? txtPassword.Text : string.Empty;
-
-            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+            if (ds.Tables[0].Rows.Count > 0)
             {
-                // Set session flag for authenticated user
-                Session["IsLoggedIn"] = true;
                 Response.Redirect("Dashboard.aspx");
             }
             else
