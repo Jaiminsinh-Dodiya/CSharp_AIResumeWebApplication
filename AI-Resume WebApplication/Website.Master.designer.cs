@@ -18,22 +18,20 @@ namespace AI_Resume_WebApplication
 
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
-        protected global::System.Web.UI.WebControls.Panel pnlSidebar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl appSidebar;
 
-        protected global::System.Web.UI.WebControls.Panel pnlPublicNavbar;
-
-        protected global::System.Web.UI.WebControls.Panel pnlGuestActions;
-
-        protected global::System.Web.UI.WebControls.Panel pnlUserActions;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder NavigationContent;
 
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl mainWrap;
 
-        protected global::System.Web.UI.WebControls.Panel pnlDashboardTopbar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl appTopbar;
 
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl contentInner;
 
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
 
-        protected global::System.Web.UI.WebControls.Panel pnlFooter;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder FooterContent;
+
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder PageScripts;
     }
 }

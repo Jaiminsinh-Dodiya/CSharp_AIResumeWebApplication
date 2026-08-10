@@ -3,6 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
+<asp:Content ID="NavigationOverride" ContentPlaceHolderID="NavigationContent" runat="server">
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div style="margin-bottom:var(--space-8);">
         <h1 style="font-size:var(--text-3xl); font-weight:800; margin-bottom:var(--space-2);">Executive Resume Templates</h1>
@@ -99,4 +102,7 @@
             </div>
         </div>
     </div>
+</asp:Content>
+
+<asp:Content ID="FooterOverride" ContentPlaceHolderID="FooterContent" runat="server">
 </asp:Content>

@@ -19,6 +19,9 @@
     </style>
 </asp:Content>
 
+<asp:Content ID="NavigationOverride" ContentPlaceHolderID="NavigationContent" runat="server">
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container container-narrow">
         <div style="margin-bottom:var(--space-6);">
@@ -79,4 +82,7 @@
 
         </asp:Panel>
     </div>
+</asp:Content>
+
+<asp:Content ID="FooterOverride" ContentPlaceHolderID="FooterContent" runat="server">
 </asp:Content>

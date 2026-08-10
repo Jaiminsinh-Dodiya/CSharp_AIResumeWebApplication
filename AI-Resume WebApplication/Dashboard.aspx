@@ -3,6 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
+<asp:Content ID="NavigationOverride" ContentPlaceHolderID="NavigationContent" runat="server">
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <!-- ONBOARDING BANNER -->
     <div class="alert-banner alert-info" style="margin-bottom:var(--space-6); display:flex; align-items:center; gap:12px; padding:16px; background:rgba(59, 130, 246, 0.1); border:1px solid rgba(59, 130, 246, 0.3); border-radius:var(--radius-lg);">
@@ -121,4 +124,7 @@
             </div>
         </div>
     </div>
+</asp:Content>
+
+<asp:Content ID="FooterOverride" ContentPlaceHolderID="FooterContent" runat="server">
 </asp:Content>

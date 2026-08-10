@@ -34,8 +34,8 @@
 
     <form id="form1" runat="server">
 
-        <!-- ===================== APP SIDEBAR (Dashboard-style pages only) ===================== -->
-        <asp:Panel ID="pnlSidebar" runat="server" CssClass="sidebar" Visible="false">
+        <!-- ===================== APP SIDEBAR (Shared across all app pages, toggled by AppPageBase) ===================== -->
+        <div id="appSidebar" runat="server" class="sidebar" visible="false">
             <div class="sidebar-header">
                 <a href="Default.aspx" class="flex items-center gap-3">
                     <div class="stat-icon" style="width:32px; height:32px; background:var(--accent-primary-glow);">
@@ -88,43 +88,44 @@
                     </a>
                 </div>
             </div>
-        </asp:Panel>
+        </div>
 
-        <!-- ===================== PUBLIC TOP NAVBAR (Marketing pages only) ===================== -->
-        <asp:Panel ID="pnlPublicNavbar" runat="server" CssClass="navbar" Style="position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(10,10,20,0.85); backdrop-filter:blur(16px); border-bottom:1px solid var(--glass-border);">
-            <header class="container navbar-inner">
-                <a href="Default.aspx" class="flex items-center gap-3">
-                    <div class="stat-icon" style="width:36px; height:36px; background:var(--accent-primary-glow); border-color:var(--accent-primary);">
-                        <svg class="icon-svg" style="color:#FFF;" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                    </div>
-                    <span style="font-family:var(--font-heading); font-weight:800; font-size:var(--text-xl);" class="text-gradient-purple">ResumeAI</span>
-                </a>
-
-                <nav class="nav-links">
-                    <a href="Features.aspx" class='<%= "nav-link " + GetActiveClass("Features.aspx") %>'>Features</a>
-                    <a href="Default.aspx#how-it-works" class="nav-link">How It Works</a>
-                    <a href="Templates.aspx" class='<%= "nav-link " + GetActiveClass("Templates.aspx") %>'>Templates</a>
-                    <a href="Default.aspx#pricing" class="nav-link">Pricing</a>
-                </nav>
-
-                <asp:Panel ID="pnlGuestActions" runat="server" CssClass="flex items-center gap-3">
-                    <a href="Login.aspx" class="btn btn-ghost">Sign In</a>
-                    <a href="Register.aspx" class="btn btn-primary">
-                        Get Started Free
-                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <!-- ===================== NAVIGATION ContentPlaceHolder ===================== -->
+        <!-- Default content: Public marketing top navbar.                             -->
+        <!-- App pages override this with empty <asp:Content> to hide the navbar.      -->
+        <asp:ContentPlaceHolder ID="NavigationContent" runat="server">
+            <header class="navbar" style="position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(10,10,20,0.85); backdrop-filter:blur(16px); border-bottom:1px solid var(--glass-border);">
+                <div class="container navbar-inner">
+                    <a href="Default.aspx" class="flex items-center gap-3">
+                        <div class="stat-icon" style="width:36px; height:36px; background:var(--accent-primary-glow); border-color:var(--accent-primary);">
+                            <svg class="icon-svg" style="color:#FFF;" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <span style="font-family:var(--font-heading); font-weight:800; font-size:var(--text-xl);" class="text-gradient-purple">ResumeAI</span>
                     </a>
-                </asp:Panel>
 
-                <asp:Panel ID="pnlUserActions" runat="server" CssClass="flex items-center gap-3" Visible="false">
-                    <a href="Dashboard.aspx" class="btn btn-secondary">Dashboard</a>
-                    <a href="Login.aspx" class="btn btn-ghost" title="Logout">Sign Out</a>
-                </asp:Panel>
+                    <nav class="nav-links">
+                        <a href="Features.aspx" class='<%= "nav-link " + GetActiveClass("Features.aspx") %>'>Features</a>
+                        <a href="Default.aspx#how-it-works" class="nav-link">How It Works</a>
+                        <a href="Templates.aspx" class='<%= "nav-link " + GetActiveClass("Templates.aspx") %>'>Templates</a>
+                        <a href="Default.aspx#pricing" class="nav-link">Pricing</a>
+                    </nav>
+
+                    <div class="flex items-center gap-3">
+                        <a href="Login.aspx" class="btn btn-ghost">Sign In</a>
+                        <a href="Register.aspx" class="btn btn-primary">
+                            Get Started Free
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
             </header>
-        </asp:Panel>
+        </asp:ContentPlaceHolder>
 
         <!-- ===================== MAIN CONTENT AREA ===================== -->
-        <div id="mainWrap" runat="server">
-            <asp:Panel ID="pnlDashboardTopbar" runat="server" CssClass="dashboard-topbar flex items-center justify-between" Visible="false">
+        <div id="mainWrap" runat="server" style="padding-top:90px; min-height:82vh;">
+
+            <!-- APP TOPBAR (Shared across all app pages, toggled by AppPageBase) -->
+            <div id="appTopbar" runat="server" class="dashboard-topbar flex items-center justify-between" visible="false">
                 <div class="flex items-center gap-4">
                     <div style="position:relative; width:280px;">
                         <input type="text" class="form-input" placeholder="Search resumes, templates..." style="padding-left:36px;">
@@ -140,15 +141,17 @@
                         Create New Resume
                     </a>
                 </div>
-            </asp:Panel>
+            </div>
 
             <div id="contentInner" runat="server">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
 
-            <!-- Global Fixed Footer (Marketing pages only) -->
-            <asp:Panel ID="pnlFooter" runat="server">
+            <!-- ===================== FOOTER ContentPlaceHolder ===================== -->
+            <!-- Default content: Public marketing footer.                             -->
+            <!-- App pages override this with empty <asp:Content> to hide the footer.  -->
+            <asp:ContentPlaceHolder ID="FooterContent" runat="server">
                 <footer style="border-top:1px solid var(--glass-border); padding:var(--space-16) 0 var(--space-8) 0; background:var(--bg-primary);">
                     <div class="container">
                         <div class="grid grid-cols-4 gap-8" style="margin-bottom:var(--space-12);">
@@ -200,8 +203,13 @@
                         </div>
                     </div>
                 </footer>
-            </asp:Panel>
+            </asp:ContentPlaceHolder>
         </div>
+
+        <!-- ===================== PAGE SCRIPTS ContentPlaceHolder ===================== -->
+        <!-- Content pages can inject page-specific JavaScript here.                     -->
+        <asp:ContentPlaceHolder ID="PageScripts" runat="server">
+        </asp:ContentPlaceHolder>
 
     </form>
 
