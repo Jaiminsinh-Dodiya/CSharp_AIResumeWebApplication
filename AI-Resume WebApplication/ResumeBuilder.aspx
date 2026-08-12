@@ -105,22 +105,8 @@
                 </div>
 
                 <!-- LIVE RESUME PAPER CARD -->
-                <div style="background:#FFFFFF; color:#0F172A; padding:var(--space-6); min-height:580px; font-size:var(--text-xs); line-height:1.5;">
-                    <h1 style="color:#0F172A; font-size:18pt; margin-bottom:2px;">Alexander Wright</h1>
-                    <p style="color:var(--accent-primary); font-weight:700; font-size:10pt; margin-bottom:8px;">Senior Principal Software Engineer</p>
-                    <p style="color:#64748B; font-size:8.5pt; margin-bottom:12px;">
-                        alexander.wright@tech.io &bull; +1 (555) 234-5678 &bull; San Francisco, CA
-                    </p>
-
-                    <h3 style="color:var(--accent-primary); border-bottom:1.5pt solid #E2E8F0; font-size:9pt; text-transform:uppercase; margin-top:10pt; margin-bottom:4pt;">EXECUTIVE SUMMARY</h3>
-                    <p style="color:#334155; font-size:8.5pt;">Results-driven Senior Engineer with 8+ years experience scaling high-concurrency cloud systems, Kubernetes microservices, and leading distributed infrastructure engineering teams.</p>
-
-                    <h3 style="color:var(--accent-primary); border-bottom:1.5pt solid #E2E8F0; font-size:9pt; text-transform:uppercase; margin-top:10pt; margin-bottom:4pt;">PROFESSIONAL EXPERIENCE</h3>
-                    <p style="font-weight:700; color:#0F172A; font-size:8.5pt;">Lead Systems Architect - CloudScale Inc. (2021 &ndash; Present)</p>
-                    <ul style="list-style-type:disc; padding-left:16px; color:#334155; font-size:8pt;">
-                        <li>Scaled Kubernetes microservices architecture to process 4.2B daily API requests with 99.99% SLA.</li>
-                        <li>Architected automated CI/CD pipeline reducing deployment latency by 64% across 80+ microservices.</li>
-                    </ul>
+                <div style="background:#FFFFFF; color:#0F172A; min-height:580px; font-size:var(--text-xs); line-height:1.5;">
+                    <asp:Literal ID="litResumeContent" runat="server"></asp:Literal>
                 </div>
             </div>
         </div>

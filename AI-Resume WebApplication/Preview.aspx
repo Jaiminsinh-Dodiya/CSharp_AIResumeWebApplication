@@ -1,4 +1,4 @@
-<%@ Page Title="Resume Document Viewer - ResumeAI" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="Preview.aspx.cs" Inherits="AI_Resume_WebApplication.Preview" %>
+    <%@ Page Title="Resume Document Viewer - ResumeAI" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="Preview.aspx.cs" Inherits="AI_Resume_WebApplication.Preview" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -31,57 +31,8 @@
 
         <!-- CENTERED A4 DOCUMENT WORKSPACE WITH REALISTIC DROP SHADOW -->
         <div class="a4-workspace" style="box-shadow: 0 25px 80px rgba(0,0,0,0.8); margin:0 auto;">
-            <div id="resumeDoc" class="a4-document" style="background:#FFF; color:#0F172A; padding:40px; border-radius:4px; font-family:var(--font-body);">
-                <h1 style="color:#0F172A; margin-bottom:4px;">Alexander Wright</h1>
-                <p style="color:var(--accent-primary); font-weight:700; font-size:12pt; margin-bottom:6pt;">Senior Principal Software Engineer</p>
-                <p style="font-size:9.5pt; color:#475569; margin-bottom:16pt;">
-                    alexander.wright@tech.io &bull; +1 (555) 234-5678 &bull; San Francisco, CA &bull; linkedin.com/in/alexanderwright
-                </p>
-
-                <h2 style="color:#0F172A; font-size:14pt; border-bottom:1px solid #E2E8F0; padding-bottom:4px; margin-bottom:8pt;">Executive Summary</h2>
-                <p style="margin-bottom:12pt; font-size:10pt; color:#334155;">
-                    Results-driven Senior Engineer with 8+ years experience scaling high-concurrency cloud systems, Kubernetes microservices, and leading distributed infrastructure engineering teams across Silicon Valley SaaS platforms.
-                </p>
-
-                <h2 style="color:#0F172A; font-size:14pt; border-bottom:1px solid #E2E8F0; padding-bottom:4px; margin-bottom:8pt;">Core Technical Expertise</h2>
-                <p style="margin-bottom:12pt; font-size:10pt; color:#334155;">
-                    <b>Languages:</b> Go (Golang), TypeScript, Python, C++, SQL <br>
-                    <b>Infrastructure &amp; Cloud:</b> Kubernetes (EKS/GKE), AWS, Terraform, Docker, Kafka, Redis, PostgreSQL <br>
-                    <b>Architecture:</b> Microservices, Event-Driven Architecture, High-Availability Systems, CI/CD
-                </p>
-
-                <h2 style="color:#0F172A; font-size:14pt; border-bottom:1px solid #E2E8F0; padding-bottom:4px; margin-bottom:8pt;">Professional Experience</h2>
-                <div style="margin-bottom:12pt; font-size:10pt;">
-                    <div style="display:flex; justify-content:space-between; font-weight:700; color:#1E293B;">
-                        <span>Lead Systems Architect - CloudScale Inc.</span>
-                        <span>2021 &ndash; Present</span>
-                    </div>
-                    <ul style="list-style-type:disc; padding-left:16pt; margin-top:4pt; color:#334155;">
-                        <li>Scaled Kubernetes microservices architecture to process 4.2B daily API requests with 99.99% uptime.</li>
-                        <li>Architected automated CI/CD pipeline reducing deployment latency by 64% across 80+ microservices.</li>
-                        <li>Mentored a team of 14 senior infrastructure engineers across San Francisco and London offices.</li>
-                    </ul>
-                </div>
-
-                <div style="margin-bottom:12pt; font-size:10pt;">
-                    <div style="display:flex; justify-content:space-between; font-weight:700; color:#1E293B;">
-                        <span>Senior Infrastructure Engineer - Veloce Systems</span>
-                        <span>2018 &ndash; 2021</span>
-                    </div>
-                    <ul style="list-style-type:disc; padding-left:16pt; margin-top:4pt; color:#334155;">
-                        <li>Spearheaded cloud migration of legacy monolith to AWS EKS, reducing hosting costs by $420k annually.</li>
-                        <li>Designed real-time telemetry pipeline handling 50TB daily logs using Kafka and OpenTelemetry.</li>
-                    </ul>
-                </div>
-
-                <h2 style="color:#0F172A; font-size:14pt; border-bottom:1px solid #E2E8F0; padding-bottom:4px; margin-bottom:8pt;">Education &amp; Credentials</h2>
-                <div style="display:flex; justify-content:space-between; font-size:10pt; color:#334155;">
-                    <div>
-                        <b>B.S. in Computer Science &amp; Engineering</b> <br>
-                        University of California, Berkeley
-                    </div>
-                    <span>Graduation: 2018</span>
-                </div>
+            <div id="resumeDoc" class="a4-document" style="background:#FFF; color:#0F172A; font-family:var(--font-body);">
+                <asp:Literal ID="litResumeContent" runat="server"></asp:Literal>
             </div>
         </div>
     </div>
