@@ -8,7 +8,7 @@
     <title>ResumeAI - Autonomous AI Resume Builder &amp; Intelligence System</title>
     <meta name="description" content="Build ATS-optimized, executive-grade resumes with real-time AI intelligence, liquid glass styling, and instant PDF exports." />
 
-    <!-- Design System & Architecture CSS -->
+
     <link rel="stylesheet" href="assets/css/tokens.css" />
     <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/base.css" />
@@ -26,7 +26,7 @@
 </head>
 <body>
 
-    <!-- Ambient Canvas Background Lighting -->
+    
     <div class="ambient-canvas">
         <div class="ambient-blob blob-purple"></div>
         <div class="ambient-blob blob-indigo"></div>
@@ -35,7 +35,7 @@
 
     <form id="form1" runat="server">
 
-        <!-- ===================== APP SIDEBAR (Shared across all app pages, toggled by AppPageBase) ===================== -->
+        
         <div id="appSidebar" runat="server" class="sidebar" visible="false">
             <div class="sidebar-header">
                 <a href="Default.aspx" class="flex items-center gap-3">
@@ -95,9 +95,6 @@
             </div>
         </div>
 
-        <!-- ===================== NAVIGATION ContentPlaceHolder ===================== -->
-        <!-- Default content: Public marketing top navbar.                             -->
-        <!-- App pages override this with empty <asp:Content> to hide the navbar.      -->
         <asp:ContentPlaceHolder ID="NavigationContent" runat="server">
             <header class="navbar" style="position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(10,10,20,0.85); backdrop-filter:blur(16px); border-bottom:1px solid var(--glass-border);">
                 <div class="container navbar-inner">
