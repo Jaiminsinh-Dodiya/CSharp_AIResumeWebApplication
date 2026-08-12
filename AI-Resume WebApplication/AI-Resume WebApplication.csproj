@@ -63,9 +63,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Select.HtmlToPdf">
-      <HintPath>..\packages\Select.HtmlToPdf.24.1.0\lib\net40\Select.HtmlToPdf.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -93,7 +90,6 @@
     <Content Include="DesignSystem.aspx" />
     <Content Include="Features.aspx" />
     <Content Include="HowItWorks.aspx" />
-    <Content Include="Preview.aspx" />
     <Content Include="ResumeBuilder.aspx" />
     <Content Include="Settings.aspx" />
     <Content Include="Templates.aspx" />
@@ -199,13 +195,6 @@
     </Compile>
     <Compile Include="HowItWorks.aspx.designer.cs">
       <DependentUpon>HowItWorks.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Preview.aspx.cs">
-      <DependentUpon>Preview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Preview.aspx.designer.cs">
-      <DependentUpon>Preview.aspx</DependentUpon>
     </Compile>
     <Compile Include="ResumeBuilder.aspx.cs">
       <DependentUpon>ResumeBuilder.aspx</DependentUpon>

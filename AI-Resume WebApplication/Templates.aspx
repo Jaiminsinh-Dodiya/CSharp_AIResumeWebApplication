@@ -164,7 +164,6 @@
             </div>
             <div class="flex gap-3">
                 <a href="ResumeBuilder.aspx?template=modern" class="btn btn-primary flex-1">Use Template</a>
-                <a href="Preview.aspx?template=modern" class="btn btn-secondary flex-1">Preview</a>
             </div>
         </div>
 
@@ -207,7 +206,6 @@
             </div>
             <div class="flex gap-3">
                 <a href="ResumeBuilder.aspx?template=executive" class="btn btn-primary flex-1">Use Template</a>
-                <a href="Preview.aspx?template=executive" class="btn btn-secondary flex-1">Preview</a>
             </div>
         </div>
 
@@ -244,7 +242,6 @@
             </div>
             <div class="flex gap-3">
                 <a href="ResumeBuilder.aspx?template=minimalist" class="btn btn-primary flex-1">Use Template</a>
-                <a href="Preview.aspx?template=minimalist" class="btn btn-secondary flex-1">Preview</a>
             </div>
         </div>
 
