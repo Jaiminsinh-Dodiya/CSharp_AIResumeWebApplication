@@ -9,11 +9,33 @@ namespace AI_Resume_WebApplication
         {
             if (!IsPostBack)
             {
-                if (lblStatus != null)
+                if (Request.QueryString["template"] != null)
                 {
-                    lblStatus.Visible = false;
+                    Session["SelectedTemplate"] = Request.QueryString["template"];
                 }
+                
+                RenderPreview();
             }
+        }
+
+        private void RenderPreview()
+        {
+            string templateId = Session["SelectedTemplate"] as string ?? "modern";
+            string primaryColor = Session["ThemeColor"] as string ?? "#3b82f6";
+
+            var data = new ResumeData
+            {
+                FullName = txtFullName.Text,
+                JobTitle = txtTargetTitle.Text,
+                Email = txtEmail.Text,
+                Phone = txtPhone.Text,
+                Summary = txtSummary.Text,
+                ExperienceRoleTitle = txtRoleTitle.Text,
+                ExperienceAchievements = txtAchievements.Text,
+                Skills = new System.Collections.Generic.List<string> { "Go (Golang)", "TypeScript", "Python", "Kubernetes", "AWS", "Terraform", "Docker", "Kafka", "Redis", "Microservices", "CI/CD" }
+            };
+
+            litResumeContent.Text = ResumeTemplateBase.RenderTemplate(templateId, primaryColor, data);
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -28,6 +50,7 @@ namespace AI_Resume_WebApplication
                 lblStatus.Text = "Resume changes saved successfully.";
                 lblStatus.Visible = true;
             }
+            RenderPreview();
         }
 
         protected void btnAiRewrite_Click(object sender, EventArgs e)
