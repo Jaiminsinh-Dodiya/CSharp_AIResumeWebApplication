@@ -49,6 +49,7 @@
                     <div class="flex items-center gap-3">
                         <span class="badge badge-success">98% ATS</span>
                         <a href="ResumeBuilder.aspx" class="btn btn-secondary btn-sm">Edit</a>
+                        <a href="Preview.aspx" class="btn btn-primary btn-sm">Preview</a>
                     </div>
                 </div>
 
@@ -67,6 +68,7 @@
                     <div class="flex items-center gap-3">
                         <span class="badge badge-purple">92% ATS</span>
                         <a href="ResumeBuilder.aspx" class="btn btn-secondary btn-sm">Edit</a>
+                        <a href="Preview.aspx" class="btn btn-primary btn-sm">Preview</a>
                     </div>
                 </div>
             </div>

@@ -55,7 +55,10 @@
                     <svg class="icon-svg" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                     Resume Builder
                 </a>
-
+                <a href="Preview.aspx" class='<%= "sidebar-item " + GetActiveClass("Preview.aspx") %>'>
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    Resume Preview
+                </a>
                 <a href="CareerProfile.aspx" class='<%= "sidebar-item " + GetActiveClass("CareerProfile.aspx") %>'>
                     <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                     Career Profile
