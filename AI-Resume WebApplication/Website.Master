@@ -123,10 +123,10 @@
             </header>
         </asp:ContentPlaceHolder>
 
-        <!-- ===================== MAIN CONTENT AREA ===================== -->
+  
         <div id="mainWrap" runat="server" style="padding-top:90px; min-height:82vh;">
 
-            <!-- APP TOPBAR (Shared across all app pages, toggled by AppPageBase) -->
+            
             <div id="appTopbar" runat="server" class="dashboard-topbar flex items-center justify-between" visible="false">
                 <div class="flex items-center gap-4">
                     <div style="position:relative; width:280px;">
@@ -150,9 +150,7 @@
                 </asp:ContentPlaceHolder>
             </div>
 
-            <!-- ===================== FOOTER ContentPlaceHolder ===================== -->
-            <!-- Default content: Public marketing footer.                             -->
-            <!-- App pages override this with empty <asp:Content> to hide the footer.  -->
+           
             <asp:ContentPlaceHolder ID="FooterContent" runat="server">
                 <footer style="border-top:1px solid var(--glass-border); padding:var(--space-16) 0 var(--space-8) 0; background:var(--bg-primary);">
                     <div class="container">
@@ -209,8 +207,7 @@
             </asp:ContentPlaceHolder>
         </div>
 
-        <!-- ===================== PAGE SCRIPTS ContentPlaceHolder ===================== -->
-        <!-- Content pages can inject page-specific JavaScript here.                     -->
+                       
         <asp:ContentPlaceHolder ID="PageScripts" runat="server">
         </asp:ContentPlaceHolder>
 

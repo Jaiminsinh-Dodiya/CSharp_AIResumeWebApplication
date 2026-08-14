@@ -8,7 +8,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container container-narrow">
-        <!-- FLOATING DOCUMENT TOOLBAR -->
+       
         <div class="viewer-toolbar glow-border" style="position:sticky; top:20px; z-index:var(--z-fixed); margin-bottom:var(--space-8); display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:rgba(15,23,42,0.85); backdrop-filter:blur(12px); border-radius:var(--radius-lg); border:1px solid var(--glass-border);">
             <div class="flex items-center gap-3">
                 <a href="ResumeBuilder.aspx" class="btn btn-secondary btn-sm">&larr; Back to Editor</a>
@@ -16,7 +16,7 @@
             </div>
 
             <div class="flex items-center gap-2">
-                <!-- ZOOM CONTROLS -->
+               
                 <button type="button" id="zoomOut" class="btn btn-secondary btn-sm" title="Zoom Out">-</button>
                 <span id="zoomVal" style="font-size:var(--text-xs); width:48px; text-align:center; font-weight:600;">100%</span>
                 <button type="button" id="zoomIn" class="btn btn-secondary btn-sm" title="Zoom In">+</button>
@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <!-- CENTERED A4 DOCUMENT WORKSPACE WITH REALISTIC DROP SHADOW -->
+       
         <div class="a4-workspace" style="box-shadow: 0 25px 80px rgba(0,0,0,0.8); margin:0 auto;">
             <div id="resumeDoc" class="a4-document" style="background:#FFF; color:#0F172A; font-family:var(--font-body);">
                 <asp:Literal ID="litResumeContent" runat="server"></asp:Literal>

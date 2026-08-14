@@ -31,12 +31,8 @@ namespace AI_Resume_WebApplication
             var sb = new StringBuilder();
             string cssClass = "template-" + templateId.ToLower();
             
-            // Build the dynamic URL for the Digital Card Hub
-            string host = HttpContext.Current != null ? HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) : "https://yourdomain.com";
-            string hubUrl = $"{host}/Card.aspx?name={System.Uri.EscapeDataString(data.FullName ?? "")}&title={System.Uri.EscapeDataString(data.JobTitle ?? "")}&email={System.Uri.EscapeDataString(data.Email ?? "")}&phone={System.Uri.EscapeDataString(data.Phone ?? "")}";
-            
-            // Generate QR Code URL via external API pointing to the Digital Hub
-            string qrData = System.Uri.EscapeDataString(hubUrl);
+            // Generate QR Code URL via external API pointing to contact email
+            string qrData = System.Uri.EscapeDataString($"mailto:{data.Email}");
             string qrUrl = $"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={qrData}&color=111827";
 
             // Random generator for skill proficiency visualization

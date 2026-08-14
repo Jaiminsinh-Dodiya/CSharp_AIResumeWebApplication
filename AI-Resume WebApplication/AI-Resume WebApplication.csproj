@@ -96,7 +96,6 @@
     <Content Include="Templates.aspx" />
     <Content Include="Error404.aspx" />
     <Content Include="Error500.aspx" />
-    <Content Include="Card.aspx" />
     <Content Include="MockInterview.aspx" />
     <Content Include="assets\css\animations.css" />
     <Content Include="assets\css\base.css" />
@@ -238,10 +237,6 @@
     </Compile>
     <Compile Include="Error500.aspx.designer.cs">
       <DependentUpon>Error500.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Card.aspx.cs">
-      <DependentUpon>Card.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MockInterview.aspx.cs">
       <DependentUpon>MockInterview.aspx</DependentUpon>
