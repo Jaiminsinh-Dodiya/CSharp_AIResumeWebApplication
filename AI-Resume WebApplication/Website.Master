@@ -90,9 +90,6 @@
             </div>
         </div>
 
-        <!-- ===================== NAVIGATION ContentPlaceHolder ===================== -->
-        <!-- Default content: Public marketing top navbar.                             -->
-        <!-- App pages override this with empty <asp:Content> to hide the navbar.      -->
         <asp:ContentPlaceHolder ID="NavigationContent" runat="server">
             <header class="navbar" style="position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(10,10,20,0.85); backdrop-filter:blur(16px); border-bottom:1px solid var(--glass-border);">
                 <div class="container navbar-inner">
@@ -120,8 +117,7 @@
                 </div>
             </header>
         </asp:ContentPlaceHolder>
-
-        <!-- ===================== MAIN CONTENT AREA ===================== -->
+        
         <div id="mainWrap" runat="server" style="padding-top:90px; min-height:82vh;">
 
             <!-- APP TOPBAR (Shared across all app pages, toggled by AppPageBase) -->
@@ -148,9 +144,7 @@
                 </asp:ContentPlaceHolder>
             </div>
 
-            <!-- ===================== FOOTER ContentPlaceHolder ===================== -->
-            <!-- Default content: Public marketing footer.                             -->
-            <!-- App pages override this with empty <asp:Content> to hide the footer.  -->
+
             <asp:ContentPlaceHolder ID="FooterContent" runat="server">
                 <footer style="border-top:1px solid var(--glass-border); padding:var(--space-16) 0 var(--space-8) 0; background:var(--bg-primary);">
                     <div class="container">
@@ -206,8 +200,7 @@
             </asp:ContentPlaceHolder>
         </div>
 
-        <!-- ===================== PAGE SCRIPTS ContentPlaceHolder ===================== -->
-        <!-- Content pages can inject page-specific JavaScript here.                     -->
+
         <asp:ContentPlaceHolder ID="PageScripts" runat="server">
         </asp:ContentPlaceHolder>
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.Script.Serialization;
 
 namespace AI_Resume_WebApplication
 {
@@ -13,33 +14,46 @@ namespace AI_Resume_WebApplication
         {
             get
             {
-                if (ViewState["InterviewQuestions"] == null)
-                    ViewState["InterviewQuestions"] = new List<string>();
-                return (List<string>)ViewState["InterviewQuestions"];
+                if (string.IsNullOrEmpty(hfQuestions.Value))
+                    return new List<string>();
+                var js = new JavaScriptSerializer();
+                return js.Deserialize<List<string>>(hfQuestions.Value) ?? new List<string>();
             }
-            set { ViewState["InterviewQuestions"] = value; }
+            set
+            {
+                var js = new JavaScriptSerializer();
+                hfQuestions.Value = js.Serialize(value ?? new List<string>());
+            }
         }
 
         private int CurrentQuestionIndex
         {
             get
             {
-                if (ViewState["CurrentQuestionIndex"] == null)
-                    return 0;
-                return (int)ViewState["CurrentQuestionIndex"];
+                int index = 0;
+                int.TryParse(hfCurrentQuestionIndex.Value, out index);
+                return index;
             }
-            set { ViewState["CurrentQuestionIndex"] = value; }
+            set
+            {
+                hfCurrentQuestionIndex.Value = value.ToString();
+            }
         }
 
         private Dictionary<int, string> Answers
         {
             get
             {
-                if (ViewState["InterviewAnswers"] == null)
-                    ViewState["InterviewAnswers"] = new Dictionary<int, string>();
-                return (Dictionary<int, string>)ViewState["InterviewAnswers"];
+                if (string.IsNullOrEmpty(hfAnswers.Value))
+                    return new Dictionary<int, string>();
+                var js = new JavaScriptSerializer();
+                return js.Deserialize<Dictionary<int, string>>(hfAnswers.Value) ?? new Dictionary<int, string>();
             }
-            set { ViewState["InterviewAnswers"] = value; }
+            set
+            {
+                var js = new JavaScriptSerializer();
+                hfAnswers.Value = js.Serialize(value ?? new Dictionary<int, string>());
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)

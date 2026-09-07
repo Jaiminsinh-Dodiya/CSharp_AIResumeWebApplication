@@ -22,5 +22,8 @@ namespace AI_Resume_WebApplication
         protected global::System.Web.UI.WebControls.Label lblSuggestedAnswer;
         protected global::System.Web.UI.WebControls.Button btnPrev;
         protected global::System.Web.UI.WebControls.Button btnNext;
+        protected global::System.Web.UI.WebControls.HiddenField hfQuestions;
+        protected global::System.Web.UI.WebControls.HiddenField hfCurrentQuestionIndex;
+        protected global::System.Web.UI.WebControls.HiddenField hfAnswers;
     }
 }

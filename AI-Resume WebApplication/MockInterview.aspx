@@ -24,6 +24,10 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container container-narrow">
+        <asp:HiddenField ID="hfQuestions" runat="server" />
+        <asp:HiddenField ID="hfCurrentQuestionIndex" runat="server" Value="0" />
+        <asp:HiddenField ID="hfAnswers" runat="server" />
+
         <div style="margin-bottom:var(--space-6);">
             <h1 style="font-size:var(--text-3xl); font-weight:800; margin-bottom:var(--space-1);">AI Mock Interviewer</h1>
             <p style="font-size:var(--text-sm); color:var(--text-muted);">Practice tailored interview questions and get real-time AI feedback to perfect your delivery.</p>
