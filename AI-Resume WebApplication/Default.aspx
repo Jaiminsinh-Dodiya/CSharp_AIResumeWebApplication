@@ -1,14 +1,14 @@
-<%@ Page Title="ResumeAI - Autonomous AI Resume Builder & Intelligence System" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="AI_Resume_WebApplication.Default" %>
+    <%@ Page Title="ResumeAI - Autonomous AI Resume Builder & Intelligence System" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="AI_Resume_WebApplication.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- HERO SECTION WITH LIQUID GLASS CANVAS -->
+    
     <section class="hero-section" style="position:relative; padding:var(--space-12) 0 var(--space-20) 0; overflow:hidden;">
         <div class="container hero-container grid grid-cols-12 gap-8 items-center">
             
-            <!-- LEFT HERO CONTENT -->
+           
             <div class="col-span-7 hero-content animate-fade-up">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 glass-card glow-border" style="background:rgba(124, 58, 237, 0.1); border-color:rgba(124, 58, 237, 0.3);">
                     <span class="badge badge-purple">AI Engine v4.8</span>
@@ -33,7 +33,7 @@
                     </a>
                 </div>
 
-                <!-- TRUST BADGES & METRICS -->
+               
                 <div class="flex items-center gap-6 flex-wrap" style="font-size:var(--text-xs); color:var(--text-muted);">
                     <div class="flex items-center gap-2">
                         <span style="color:var(--color-success); font-weight:700;">&check;</span> No credit card required
@@ -49,11 +49,11 @@
                 </div>
             </div>
 
-            <!-- RIGHT HERO INTERACTIVE GLASS MOCKUP -->
+            
             <div class="col-span-5 hero-preview animate-fade-up" style="animation-delay:150ms;">
                 <div class="glass-card glow-border p-4 relative" style="background:rgba(15, 17, 30, 0.85); box-shadow:var(--shadow-purple-glow);">
                     
-                    <!-- REAL-TIME ATS METRIC SPOTLIGHT -->
+                   
                     <div class="glass-card p-3 mb-4 flex items-center justify-between" style="background:var(--bg-surface); border-color:var(--accent-primary-glow);">
                         <div class="flex items-center gap-3">
                             <div class="stat-icon" style="color:var(--color-success);">
@@ -67,12 +67,12 @@
                         <span class="badge badge-success">Passed All Filters</span>
                     </div>
 
-                    <!-- AI BULLET SUGGESTION POPUP MOCKUP -->
+                    
                     <div class="glass-card p-3 mb-4" style="background:rgba(124, 58, 237, 0.15); border:1px solid rgba(124, 58, 237, 0.4);">
                         <p style="font-size:var(--text-xs); margin:0;">&#10024; <b>AI Suggestion:</b> Add quantifiable metrics to your Cloud Infrastructure bullet points to boost impact by 14%.</p>
                     </div>
 
-                    <!-- MINI RESUME CANVAS CARD -->
+                    
                     <div style="background:#FFF; color:#0F172A; border-radius:var(--radius-sm); padding:var(--space-4); font-size:10px; line-height:1.4;">
                         <h3 style="font-size:14px; color:#0F172A; margin-bottom:2px;">Alexander Wright</h3>
                         <p style="color:var(--accent-primary); font-weight:700; font-size:11px; margin-bottom:4px;">Senior Principal Software Engineer</p>
@@ -88,7 +88,7 @@
         </div>
     </section>
 
-    <!-- SECTION 2: 4-STEP HOW IT WORKS SUMMARY -->
+    
     <section class="section" style="padding:var(--space-16) 0; border-top:1px solid var(--glass-border); background:var(--bg-secondary);">
         <div class="container">
             <div style="text-align:center; max-width:640px; margin:0 auto var(--space-12) auto;">
@@ -129,7 +129,7 @@
         </div>
     </section>
 
-    <!-- SECTION 3: BENTO GRID FEATURE SHOWCASE -->
+    
     <section class="section" style="padding:var(--space-16) 0;">
         <div class="container">
             <div style="text-align:center; max-width:640px; margin:0 auto var(--space-12) auto;">
@@ -167,7 +167,7 @@
         </div>
     </section>
 
-    <!-- SECTION 4: ATS COMPATIBILITY MATRIX TABLE -->
+    
     <section class="section" style="padding:var(--space-16) 0; border-top:1px solid var(--glass-border); background:var(--bg-secondary);">
         <div class="container text-center" style="max-width:800px; margin:0 auto;">
             <span class="badge badge-purple" style="margin-bottom:var(--space-3);">Proven Results</span>
@@ -217,7 +217,7 @@
         </div>
     </section>
 
-    <!-- SECTION 5: FREQUENTLY ASKED QUESTIONS (FAQ) -->
+    
     <section class="section" style="padding:var(--space-16) 0;">
         <div class="container" style="max-width:760px; margin:0 auto;">
             <div style="text-align:center; margin-bottom:var(--space-12);">
@@ -256,7 +256,7 @@
         </div>
     </section>
 
-    <!-- PRICING TIERS SECTION -->
+    
     <section id="pricing" class="section" style="padding:var(--space-16) 0; border-top:1px solid var(--glass-border); background:var(--bg-secondary);">
         <div class="container">
             <div style="text-align:center; max-width:640px; margin:0 auto var(--space-12) auto;">
@@ -266,7 +266,7 @@
             </div>
 
             <div class="grid grid-cols-3 gap-8">
-                <!-- FREE TIER -->
+                
                 <div class="glass-card p-6 flex flex-col justify-between">
                     <div>
                         <h3 style="margin-bottom:var(--space-2);">Free Starter</h3>
@@ -280,7 +280,7 @@
                     <a href="Register.aspx" class="btn btn-secondary btn-full" style="text-align:center;">Get Started Free</a>
                 </div>
 
-                <!-- PRO TIER -->
+                
                 <div class="glass-card glow-border p-6 flex flex-col justify-between" style="border-color:var(--accent-primary); background:rgba(124, 58, 237, 0.08);">
                     <div>
                         <span class="badge badge-purple" style="margin-bottom:var(--space-2);">Most Popular</span>
@@ -297,7 +297,7 @@
                     <a href="Register.aspx" class="btn btn-primary btn-full" style="text-align:center;">Start 7-Day Free Trial</a>
                 </div>
 
-                <!-- EXECUTIVE TIER -->
+               
                 <div class="glass-card p-6 flex flex-col justify-between">
                     <div>
                         <h3 style="margin-bottom:var(--space-2);">Executive Suite</h3>

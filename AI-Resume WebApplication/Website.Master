@@ -8,7 +8,7 @@
     <title>ResumeAI - Autonomous AI Resume Builder &amp; Intelligence System</title>
     <meta name="description" content="Build ATS-optimized, executive-grade resumes with real-time AI intelligence, liquid glass styling, and instant PDF exports." />
 
-    <!-- Design System & Architecture CSS -->
+
     <link rel="stylesheet" href="assets/css/tokens.css" />
     <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/base.css" />
@@ -19,13 +19,14 @@
     <link rel="stylesheet" href="assets/css/pages.css" />
     <link rel="stylesheet" href="assets/css/utilities.css" />
     <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/templates.css" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
 
-    <!-- Ambient Canvas Background Lighting -->
+    
     <div class="ambient-canvas">
         <div class="ambient-blob blob-purple"></div>
         <div class="ambient-blob blob-indigo"></div>
@@ -34,7 +35,7 @@
 
     <form id="form1" runat="server">
 
-        <!-- ===================== APP SIDEBAR (Shared across all app pages, toggled by AppPageBase) ===================== -->
+        
         <div id="appSidebar" runat="server" class="sidebar" visible="false">
             <div class="sidebar-header">
                 <a href="Default.aspx" class="flex items-center gap-3">
@@ -69,6 +70,10 @@
                 <a href="Analyzer.aspx" class='<%= "sidebar-item " + GetActiveClass("Analyzer.aspx") %>'>
                     <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                     AI Analyzer
+                </a>
+                <a href="MockInterview.aspx" class='<%= "sidebar-item " + GetActiveClass("MockInterview.aspx") %>'>
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14h-2v-2h2zm0-4h-2V7h2z"/></svg>
+                    AI Mock Interview
                 </a>
                 <a href="Settings.aspx" class='<%= "sidebar-item " + GetActiveClass("Settings.aspx") %>'>
                     <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
@@ -117,10 +122,10 @@
                 </div>
             </header>
         </asp:ContentPlaceHolder>
-        
+
         <div id="mainWrap" runat="server" style="padding-top:90px; min-height:82vh;">
 
-            <!-- APP TOPBAR (Shared across all app pages, toggled by AppPageBase) -->
+            
             <div id="appTopbar" runat="server" class="dashboard-topbar flex items-center justify-between" visible="false">
                 <div class="flex items-center gap-4">
                     <div style="position:relative; width:280px;">
@@ -144,7 +149,6 @@
                 </asp:ContentPlaceHolder>
             </div>
 
-
             <asp:ContentPlaceHolder ID="FooterContent" runat="server">
                 <footer style="border-top:1px solid var(--glass-border); padding:var(--space-16) 0 var(--space-8) 0; background:var(--bg-primary);">
                     <div class="container">
@@ -165,6 +169,7 @@
                                     <li><a href="ResumeBuilder.aspx">AI Resume Builder</a></li>
                                     <li><a href="Templates.aspx">Resume Templates</a></li>
                                     <li><a href="Analyzer.aspx">ATS Analyzer</a></li>
+                                    <li><a href="MockInterview.aspx">AI Mock Interview</a></li>
                                     <li><a href="CareerProfile.aspx">Career Profile</a></li>
                                 </ul>
                             </div>
@@ -199,7 +204,6 @@
                 </footer>
             </asp:ContentPlaceHolder>
         </div>
-
 
         <asp:ContentPlaceHolder ID="PageScripts" runat="server">
         </asp:ContentPlaceHolder>
