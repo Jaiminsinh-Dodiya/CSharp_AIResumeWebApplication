@@ -3,10 +3,23 @@ using System.Web.UI;
 
 namespace AI_Resume_WebApplication
 {
-    public partial class Settings : AppPageBase
+    public partial class Settings : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // check user login
+            if (Session["userId"] == null)
+            {
+                Response.Redirect("Login.aspx");
+                return;
+            }
+
+            Website site = Master as Website;
+            if (site != null)
+            {
+                site.EnableAppLayout();
+            }
+
             if (!IsPostBack)
             {
                 if (lblStatus != null)
@@ -16,6 +29,7 @@ namespace AI_Resume_WebApplication
             }
         }
 
+        // save settings preferences
         protected void btnSaveSettings_Click(object sender, EventArgs e)
         {
             if (!Page.IsValid)
@@ -30,6 +44,7 @@ namespace AI_Resume_WebApplication
             }
         }
 
+        // update user password
         protected void btnUpdatePassword_Click(object sender, EventArgs e)
         {
             if (!Page.IsValid)
