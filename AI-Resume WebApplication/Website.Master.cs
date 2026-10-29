@@ -6,19 +6,12 @@ namespace AI_Resume_WebApplication
 {
     public partial class Website : System.Web.UI.MasterPage
     {
-        /// <summary>
-        /// Called by AppPageBase.OnPreRender() to switch the master page
-        /// from the public marketing layout (navbar + footer via default
-        /// ContentPlaceHolder content) to the app dashboard layout
-        /// (sidebar + topbar via shared server-side divs).
-        /// </summary>
+        // switch to dashboard layout for logged in users
         public void EnableAppLayout()
         {
-            // Show the shared sidebar and topbar sections
             appSidebar.Visible = true;
             appTopbar.Visible = true;
 
-            // Switch mainWrap to dashboard CSS layout
             mainWrap.Attributes["class"] = "dashboard-main";
             mainWrap.Attributes["style"] = "";
             contentInner.Attributes["class"] = "dashboard-content";
@@ -29,10 +22,7 @@ namespace AI_Resume_WebApplication
             Page.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
         }
 
-        /// <summary>
-        /// Returns "active" CSS class if the current URL matches the given page name.
-        /// Used in sidebar nav items and public navbar links to highlight the active page.
-        /// </summary>
+        // set active class on current nav link
         public string GetActiveClass(string pageName)
         {
             string currentPath = Request.Url.AbsolutePath;
@@ -45,6 +35,14 @@ namespace AI_Resume_WebApplication
                 return "active";
             }
             return string.Empty;
+        }
+
+        // get current username from session
+        public string GetUserName()
+        {
+            return Session["userName"] != null
+                ? Session["userName"].ToString()
+                : "Guest";
         }
     }
 }
