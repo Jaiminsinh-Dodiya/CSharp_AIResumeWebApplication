@@ -13,7 +13,7 @@
         <div style="flex:1;">
             <strong style="color:#FFF;">Welcome to ResumeAI!</strong> Complete your <b>Master Career Profile</b> to enable one-click AI resume generation.
         </div>
-        <a href="CareerProfile.aspx" class="btn btn-primary btn-sm" style="margin-left:auto;">Complete Profile &rarr;</a>
+        <a href="Profile.aspx" class="btn btn-primary btn-sm" style="margin-left:auto;">Complete Profile &rarr;</a>
     </div>
 
     <div style="margin-bottom:var(--space-8);">
@@ -75,7 +75,7 @@
         </div>
 
         <!-- SPOTLIGHT WIDGET: ATS SCORE & METRICS (Span 4) -->
-        <div class="col-span-4 glass-card p-6 flex flex-col justify-between" style="background:linear-gradient(135deg, rgba(6,182,212,0.08), rgba(10,10,20,0.8));">
+        <div class="col-span-4 glass-card p-6 flex flex-col justify-between" style="background:linear-gradient(135deg, rgba(58,15,52,0.6), rgba(20,5,19,0.85));">
             <div>
                 <span class="badge badge-cyan" style="margin-bottom:var(--space-3);">ATS Match Engine</span>
                 <h3 style="margin-bottom:var(--space-2);">Overall ATS Average</h3>
