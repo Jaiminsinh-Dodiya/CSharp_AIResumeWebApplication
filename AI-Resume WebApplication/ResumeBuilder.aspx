@@ -11,7 +11,7 @@
     <div class="glass-card glow-border p-4 mb-6 flex justify-between items-center" style="background:rgba(15,23,42,0.85); backdrop-filter:blur(12px);">
         <div class="flex items-center gap-4">
             <a href="Dashboard.aspx" class="btn btn-ghost btn-sm">&larr; Back to Dashboard</a>
-            <span style="font-weight:700; font-size:var(--text-base);">Resume Editor: <span class="text-gradient-purple">Principal Staff Engineer</span></span>
+            <span style="font-weight:700; font-size:var(--text-base);">Resume Editor: <span class="text-gradient-purple">My Resume</span></span>
         </div>
 
         <div class="flex items-center gap-3">
@@ -38,19 +38,19 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div class="form-group">
                         <label for="<%= txtFullName.ClientID %>" class="form-label">Full Name</label>
-                        <asp:TextBox ID="txtFullName" runat="server" CssClass="form-input" Text="Alexander Wright"></asp:TextBox>
+                        <asp:TextBox ID="txtFullName" runat="server" CssClass="form-input"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label for="<%= txtTargetTitle.ClientID %>" class="form-label">Target Job Title</label>
-                        <asp:TextBox ID="txtTargetTitle" runat="server" CssClass="form-input" Text="Senior Principal Software Engineer"></asp:TextBox>
+                        <asp:TextBox ID="txtTargetTitle" runat="server" CssClass="form-input"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label for="<%= txtEmail.ClientID %>" class="form-label">Email</label>
-                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-input" TextMode="Email" Text="alexander.wright@tech.io"></asp:TextBox>
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-input" TextMode="Email"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label for="<%= txtPhone.ClientID %>" class="form-label">Phone Number</label>
-                        <asp:TextBox ID="txtPhone" runat="server" CssClass="form-input" Text="+1 (555) 234-5678"></asp:TextBox>
+                        <asp:TextBox ID="txtPhone" runat="server" CssClass="form-input"></asp:TextBox>
                     </div>
                 </div>
             </div>
@@ -62,28 +62,17 @@
                     <asp:Button ID="btnAiRewrite" runat="server" Text="&#10024; AI Smart Rewrite" CssClass="btn btn-secondary btn-sm" OnClick="btnAiRewrite_Click" ValidationGroup="BuilderGroup" style="color:var(--accent-primary);" />
                 </div>
                 <div class="form-group">
-                    <asp:TextBox ID="txtSummary" runat="server" TextMode="MultiLine" Rows="4" CssClass="form-textarea" Text="Results-driven Senior Engineer with 8+ years experience scaling high-concurrency cloud systems, Kubernetes microservices, and leading distributed infrastructure engineering teams."></asp:TextBox>
+                    <asp:TextBox ID="txtSummary" runat="server" TextMode="MultiLine" Rows="4" CssClass="form-textarea"></asp:TextBox>
                 </div>
             </div>
 
             <div class="glass-card p-6">
                 <div class="flex justify-between items-center" style="margin-bottom:var(--space-4);">
                     <h3>3. Work Experience</h3>
-                    <button type="button" class="btn btn-secondary btn-sm">+ Add Experience</button>
+                    <a href="Profile.aspx" class="btn btn-secondary btn-sm">Edit in My Profile</a>
                 </div>
-
-                <div class="glass-card p-4" style="background:var(--bg-secondary); margin-bottom:12px;">
-                    <div class="form-group mb-3">
-                        <label for="<%= txtRoleTitle.ClientID %>" class="form-label">Role Title &amp; Company</label>
-                        <asp:TextBox ID="txtRoleTitle" runat="server" CssClass="form-input" Text="Lead Systems Architect - CloudScale Inc."></asp:TextBox>
-                    </div>
-                    <div class="form-group">
-                        <label for="<%= txtAchievements.ClientID %>" class="form-label">Key Achievements (Bullet points)</label>
-                        <asp:TextBox ID="txtAchievements" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-textarea" Text="- Scaled Kubernetes microservices architecture to process 4.2B daily API requests with 99.99% SLA.&#10;- Architected automated CI/CD pipeline reducing deployment latency by 64% across 80+ microservices."></asp:TextBox>
-                    </div>
-                </div>
+                <p style="font-size:var(--text-sm); color:var(--text-muted);">Your work experience, education and skills are loaded from My Profile and shown in the live preview.</p>
             </div>
-
             
             <details class="glass-card p-6" style="cursor:pointer;">
                 <summary style="font-weight:700; font-size:var(--text-base); color:var(--text-primary); outline:none;">
