@@ -229,7 +229,7 @@
     padding: 4px 10px;
     border-radius: 12px;
 }
-.template-modern .timeline-bullets li {
+.template-modern .timeline ul li {
     color: #4B5563;
 }
 
@@ -462,6 +462,6 @@
     font-weight: 600;
     color: #64748B;
 }
-.template-minimalist .exp-bullets li {
+.template-minimalist .exp-item ul li {
     color: #475569;
 }
