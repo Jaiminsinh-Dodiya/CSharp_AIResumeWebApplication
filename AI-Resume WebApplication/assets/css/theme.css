@@ -26,8 +26,8 @@
 
 /* Glass Refractive Overlay Utility */
 .liquid-glass {
-  background: linear-gradient(135deg, 
-    rgba(58, 15, 52, 0.52) 0%, 
+  background: linear-gradient(135deg,
+    rgba(58, 15, 52, 0.52) 0%,
     rgba(20, 5, 19, 0.75) 100%
   );
   backdrop-filter: blur(24px);
@@ -41,9 +41,9 @@
 .glass-divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(221, 227, 232, 0.15) 50%, 
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(221, 227, 232, 0.15) 50%,
     transparent 100%
   );
   margin: var(--space-6) 0;

@@ -4,7 +4,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
+
     <!-- 1. HERO SECTION -->
     <section class="section" style="padding:var(--space-16) 0 var(--space-12) 0;">
         <div class="container text-center" style="max-width:820px; margin:0 auto;">
@@ -101,7 +101,7 @@
     <!-- 3. DEEP ARCHITECTURE: FAILURE VS RESUMEAI -->
     <section class="section" style="padding:var(--space-16) 0; border-top:1px solid var(--glass-border); background:var(--bg-secondary);">
         <div class="container grid grid-cols-12 gap-8 items-center">
-            
+
             <div class="col-span-6">
                 <span class="badge badge-cyan" style="margin-bottom:var(--space-3);">DEEP ARCHITECTURE</span>
                 <h2 style="margin-bottom:var(--space-4); font-size:var(--text-3xl);">Why Traditional Resumes Fail ATS Parsers</h2>

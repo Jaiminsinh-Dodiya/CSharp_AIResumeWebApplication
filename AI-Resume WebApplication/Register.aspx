@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container" style="min-height: 85vh; display: flex; align-items: center; justify-content: center; padding: var(--space-12) var(--space-4);">
         <div class="grid grid-cols-12 gap-8 items-center" style="width: 100%; max-width: 1060px;">
-            
+
             <!-- LEFT COLUMN: Value Proposition & Feature Highlights -->
             <div class="col-span-5 flex flex-col justify-between animate-fade-up" style="padding: var(--space-4);">
                 <div>
@@ -61,7 +61,7 @@
             <!-- RIGHT COLUMN: Registration Form Card -->
             <div class="col-span-7 animate-fade-up" style="animation-delay: 100ms;">
                 <div class="glass-card glow-border" style="padding: var(--space-8); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
-                    
+
                     <div style="margin-bottom: var(--space-6);">
                         <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-1);">Create Free Account</h2>
                         <p style="font-size: var(--text-sm); color: var(--text-secondary);">Set up your workspace in under 60 seconds</p>

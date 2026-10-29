@@ -8,7 +8,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container" style="padding: var(--space-8) 0 var(--space-16) 0;">
-        
+
         <!-- TOP HEADER -->
         <div style="margin-bottom: var(--space-8);" class="flex items-center justify-between flex-wrap gap-4">
             <div>
@@ -18,7 +18,7 @@
                 <h1 style="font-size: var(--text-3xl); font-weight: 800; margin-bottom: var(--space-1);">Settings &amp; Preferences</h1>
                 <p style="font-size: var(--text-sm); color: var(--text-secondary);">Manage your profile identity, security credentials, and alert configurations</p>
             </div>
-            
+
             <div class="flex items-center gap-3">
                 <asp:Button ID="btnSaveSettings" runat="server" Text="Save Preferences" CssClass="btn btn-primary" OnClick="btnSaveSettings_Click" ValidationGroup="SettingsGroup" />
             </div>
@@ -29,7 +29,7 @@
 
         <!-- SETTINGS SPLIT GRID -->
         <div class="settings-grid grid grid-cols-12 gap-8 items-start">
-            
+
             <!-- LEFT NAVIGATION TABS -->
             <div class="col-span-3 glass-card p-4" style="border-radius: var(--radius-lg); position: sticky; top: 100px;">
                 <div style="display: flex; flex-direction: column; gap: 6px;">
@@ -54,7 +54,7 @@
 
             <!-- RIGHT PANELS CONTAINER -->
             <div class="col-span-9 flex flex-col gap-8">
-                
+
                 <!-- PANEL 1: PUBLIC PROFILE -->
                 <div class="glass-card glow-border p-8" style="border-radius: var(--radius-xl);">
                     <div class="flex items-center justify-between mb-6 pb-4" style="border-bottom: 1px solid var(--glass-border);">

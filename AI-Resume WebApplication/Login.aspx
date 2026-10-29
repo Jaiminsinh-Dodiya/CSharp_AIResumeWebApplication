@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container" style="min-height: 85vh; display: flex; align-items: center; justify-content: center; padding: var(--space-12) var(--space-4);">
         <div class="grid grid-cols-12 gap-8 items-center" style="width: 100%; max-width: 1020px;">
-            
+
             <!-- LEFT COLUMN: Brand Value & Social Proof Showcase -->
             <div class="col-span-6 flex flex-col justify-between animate-fade-up" style="padding: var(--space-6);">
                 <div>
@@ -51,7 +51,7 @@
             <!-- RIGHT COLUMN: Sign In Card -->
             <div class="col-span-6 animate-fade-up" style="animation-delay: 100ms;">
                 <div class="glass-card glow-border" style="padding: var(--space-8); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
-                    
+
                     <div style="margin-bottom: var(--space-6);">
                         <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-1);">Account Login</h2>
                         <p style="font-size: var(--text-sm); color: var(--text-secondary);">Enter your credentials to enter your workspace</p>
