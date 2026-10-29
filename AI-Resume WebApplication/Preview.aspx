@@ -12,7 +12,7 @@
         <div class="viewer-toolbar glow-border" style="position:sticky; top:20px; z-index:var(--z-fixed); margin-bottom:var(--space-8); display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:rgba(15,23,42,0.85); backdrop-filter:blur(12px); border-radius:var(--radius-lg); border:1px solid var(--glass-border);">
             <div class="flex items-center gap-3">
                 <a href="ResumeBuilder.aspx" class="btn btn-secondary btn-sm">&larr; Back to Editor</a>
-                <span style="font-weight:700; font-size:var(--text-sm);">Principal_Software_Engineer_CV.pdf</span>
+                <span style="font-weight:700; font-size:var(--text-sm);">My_Resume.pdf</span>
             </div>
 
             <div class="flex items-center gap-2">
