@@ -1,4 +1,6 @@
-/* ASP.NET Master Page Layout Simulations */
+/* ASP.NET Master Page Layout Simulations
+   Theme: Plum (#3A0F34) | Gold (#EAAA00) | Mist (#DDE3E8)
+*/
 
 /* ==========================================================================
    Main Master (Public Pages)
@@ -13,8 +15,8 @@
   position: sticky;
   top: 0;
   z-index: var(--z-nav);
-  background: rgba(9, 9, 11, 0.8);
-  backdrop-filter: blur(12px);
+  background: rgba(20, 5, 19, 0.88);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
   padding: var(--space-4) 0;
 }
@@ -30,7 +32,7 @@
 }
 
 .main-footer {
-  background: var(--bg-surface);
+  background: rgba(20, 5, 19, 0.95);
   border-top: 1px solid var(--border-subtle);
   padding: var(--space-12) 0;
   margin-top: auto;
@@ -48,7 +50,7 @@
 
 .dashboard-sidebar {
   width: 260px;
-  background: var(--bg-base);
+  background: rgba(26, 7, 24, 0.96);
   border-right: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
@@ -78,21 +80,23 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  padding: var(--space-2) var(--space-3);
+  padding: var(--space-2) var(--space-4);
   color: var(--text-muted);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   margin-bottom: var(--space-1);
   transition: all 0.2s ease;
 }
 
 .nav-item:hover {
-  background: var(--bg-surface);
-  color: var(--text-main);
+  background: rgba(58, 15, 52, 0.6);
+  color: #FFFFFF;
 }
 
 .nav-item.active {
-  background: var(--primary-light);
-  color: var(--primary);
+  background: linear-gradient(135deg, #EAAA00 0%, #D49B00 100%);
+  color: #170516;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(234, 170, 0, 0.35);
 }
 
 .dashboard-sidebar.collapsed .nav-label {
@@ -103,13 +107,13 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-width: 0; /* Prevents flex blowout */
+  min-width: 0;
 }
 
 .dashboard-topbar {
   height: 64px;
-  background: rgba(9, 9, 11, 0.8);
-  backdrop-filter: blur(12px);
+  background: rgba(20, 5, 19, 0.88);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -134,15 +138,15 @@
   overflow: hidden;
 }
 
-/* Shares most styles with Dashboard, but could have unique coloring */
 .admin-master .dashboard-sidebar {
-  background: #000; /* Slightly darker for admin separation */
-  border-right: 1px solid rgba(255,255,255,0.1);
+  background: rgba(18, 4, 17, 0.98);
+  border-right: 1px solid var(--border-subtle);
 }
 
 .admin-master .nav-item.active {
-  background: rgba(239, 68, 68, 0.15); /* Danger/Red accent for admin */
-  color: #F87171;
+  background: rgba(244, 63, 94, 0.2);
+  color: #FDA4AF;
+  border: 1px solid rgba(244, 63, 94, 0.4);
 }
 
 /* ==========================================================================

@@ -1,5 +1,6 @@
 /* ==========================================
    ResumeAI Structural Layout & Grid System
+   Theme: Plum (#3A0F34) | Gold (#EAAA00) | Mist (#DDE3E8)
    ========================================== */
 
 /* Container Setup */
@@ -95,22 +96,24 @@
 }
 
 /* Master Header / Navbar Layout */
-.navbar {
+.navbar, header.navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: var(--z-fixed);
   padding: var(--space-4) 0;
+  background: rgba(20, 5, 19, 0.92) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid var(--glass-border) !important;
   transition: var(--transition-base);
 }
 
-.navbar.scrolled {
+.navbar.scrolled, header.navbar.scrolled {
   padding: var(--space-3) 0;
-  background: rgba(6, 6, 11, 0.85);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border-bottom: 1px solid var(--glass-border);
+  background: rgba(20, 5, 19, 0.96) !important;
+  box-shadow: 0 4px 20px rgba(18, 4, 17, 0.6);
 }
 
 .navbar-inner {
@@ -135,7 +138,7 @@
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--text-primary);
+  color: #FFFFFF;
 }
 
 .nav-link::after {
@@ -163,7 +166,9 @@
 
 .sidebar {
   width: 260px;
-  background: var(--bg-secondary);
+  background: rgba(26, 7, 24, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-right: 1px solid var(--glass-border);
   display: flex;
   flex-direction: column;
@@ -196,19 +201,20 @@
   color: var(--text-secondary);
   font-size: var(--text-sm);
   font-weight: 500;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   transition: var(--transition-fast);
 }
 
 .sidebar-item:hover {
-  color: var(--text-primary);
-  background: var(--glass-bg-hover);
+  color: #FFFFFF;
+  background: rgba(58, 15, 52, 0.65);
 }
 
 .sidebar-item.active {
-  color: #FFFFFF;
-  background: var(--accent-primary);
-  box-shadow: var(--shadow-purple-glow);
+  color: #170516;
+  font-weight: 700;
+  background: linear-gradient(135deg, #EAAA00 0%, #D49B00 100%);
+  box-shadow: 0 4px 16px rgba(234, 170, 0, 0.35);
 }
 
 .dashboard-main {
@@ -221,7 +227,7 @@
 
 .dashboard-topbar {
   height: 70px;
-  background: rgba(10, 10, 20, 0.8);
+  background: rgba(20, 5, 19, 0.92);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
   border-bottom: 1px solid var(--glass-border);
