@@ -1,203 +1,360 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Web;
 
 namespace AI_Resume_WebApplication
 {
+    // model class to hold resume data
     public class ResumeData
     {
-        public string FullName { get; set; }
-        public string JobTitle { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Summary { get; set; }
-        public string ExperienceRoleTitle { get; set; }
-        public string ExperienceAchievements { get; set; }
-        public List<string> Skills { get; set; } = new List<string>();
+        public string FullName;
+        public string JobTitle;
+        public string Email;
+        public string Phone;
+        public string Location;
+        public string LinkedIn;
+        public string Portfolio;
+        public string Summary;
+        public List<string> Skills = new List<string>();
+        public DataTable Education;
+        public DataTable Experience;
     }
 
+    // renders resume data into html templates
     public static class ResumeTemplateBase
     {
-        // SVG Icons (Upgraded to FontAwesome style geometry)
-        private const string SvgPhone = "<svg class=\"icon-svg-resume\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"></path></svg>";
-        private const string SvgEmail = "<svg class=\"icon-svg-resume\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"></path><polyline points=\"22,6 12,13 2,6\"></polyline></svg>";
-        private const string SvgUser = "<svg class=\"icon-svg-resume\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"></path><circle cx=\"12\" cy=\"7\" r=\"4\"></circle></svg>";
-        private const string SvgBriefcase = "<svg class=\"icon-svg-resume\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"7\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\"></path></svg>";
-        private const string SvgCode = "<svg class=\"icon-svg-resume\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"16 18 22 12 16 6\"></polyline><polyline points=\"8 6 2 12 8 18\"></polyline></svg>";
+        // check if datatable has rows
+        static bool HasRows(DataTable table)
+        {
+            if (table == null)
+            {
+                return false;
+            }
+            return table.Rows.Count > 0;
+        }
 
+        // format start and end date range
+        static string DateRange(DataRow row)
+        {
+            string start = "";
+            string end = "Present";
+
+            if (row["StartDate"] != DBNull.Value)
+            {
+                start = Convert.ToDateTime(row["StartDate"]).ToString("MMM yyyy");
+            }
+            if (row["EndDate"] != DBNull.Value)
+            {
+                end = Convert.ToDateTime(row["EndDate"]).ToString("MMM yyyy");
+            }
+
+            if (start == "")
+            {
+                return "";
+            }
+            return start + " - " + end;
+        }
+
+        // format job title and company
+        static string ExperienceTitle(DataRow row)
+        {
+            return HttpUtility.HtmlEncode(row["JobTitle"].ToString()) + " - " + HttpUtility.HtmlEncode(row["CompanyName"].ToString());
+        }
+
+        // format degree and institution
+        static string EducationTitle(DataRow row)
+        {
+            string text = HttpUtility.HtmlEncode(row["Degree"].ToString());
+            string field = row["FieldOfStudy"].ToString();
+
+            if (field != "")
+            {
+                text = text + ", " + HttpUtility.HtmlEncode(field);
+            }
+            return text + " - " + HttpUtility.HtmlEncode(row["Institution"].ToString());
+        }
+
+        // convert multiline text into html bullet points
+        static string Bullets(string text)
+        {
+            StringBuilder sb = new StringBuilder();
+            string[] lines = text.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (lines.Length == 0)
+            {
+                return "";
+            }
+
+            sb.Append("<ul>");
+            foreach (string line in lines)
+            {
+                sb.Append("<li>" + HttpUtility.HtmlEncode(line.TrimStart('-').Trim()) + "</li>");
+            }
+            sb.Append("</ul>");
+            return sb.ToString();
+        }
+
+        // build contact details html
+        static string ContactItems(ResumeData data)
+        {
+            string html = "";
+            if (!string.IsNullOrEmpty(data.Email))
+            {
+                html = html + "<div class=\"contact-item\">" + data.Email + "</div>";
+            }
+            if (!string.IsNullOrEmpty(data.Phone))
+            {
+                html = html + "<div class=\"contact-item\">" + data.Phone + "</div>";
+            }
+            if (!string.IsNullOrEmpty(data.Location))
+            {
+                html = html + "<div class=\"contact-item\">" + data.Location + "</div>";
+            }
+            if (!string.IsNullOrEmpty(data.LinkedIn))
+            {
+                html = html + "<div class=\"contact-item\">" + data.LinkedIn + "</div>";
+            }
+            if (!string.IsNullOrEmpty(data.Portfolio))
+            {
+                html = html + "<div class=\"contact-item\">" + data.Portfolio + "</div>";
+            }
+            return html;
+        }
+
+        // main render method
         public static string RenderTemplate(string templateId, string primaryColor, ResumeData data)
         {
-            var sb = new StringBuilder();
-            string cssClass = "template-" + templateId.ToLower();
-            
-            // Generate QR Code URL via external API pointing to contact email
-            string qrData = System.Uri.EscapeDataString($"mailto:{data.Email}");
-            string qrUrl = $"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={qrData}&color=111827";
+            StringBuilder sb = new StringBuilder();
 
-            // Random generator for skill proficiency visualization
-            Random rand = new Random(data.FullName?.GetHashCode() ?? 0);
+            sb.Append("<style>:root { --resume-primary-color: " + primaryColor + "; }</style>");
+            sb.Append("<div class=\"resume-document template-" + templateId + "\">");
 
-            sb.AppendLine($"<style>:root {{ --resume-primary-color: {primaryColor}; }}</style>");
-            sb.AppendLine($"<div class=\"resume-document {cssClass}\" style=\"position:relative;\">");
-
-            if (templateId.Equals("modern", StringComparison.OrdinalIgnoreCase))
+            if (templateId == "modern")
             {
-                // NOVA (MODERN TECH)
-                sb.AppendLine("  <div class=\"nova-sidebar\">");
-                sb.AppendLine($"    <h1>{data.FullName}</h1>");
-                sb.AppendLine($"    <div class=\"job-title\">{data.JobTitle}</div>");
-                
-                sb.AppendLine($"    <div class=\"section-title-side\">{SvgUser} Contact</div>");
-                sb.AppendLine("    <div class=\"contact-info\">");
-                sb.AppendLine($"      <div class=\"contact-item\">{SvgEmail} <span>{data.Email}</span></div>");
-                sb.AppendLine($"      <div class=\"contact-item\">{SvgPhone} <span>{data.Phone}</span></div>");
-                sb.AppendLine("    </div>");
+                sb.Append(Modern(data));
+            }
+            else if (templateId == "executive")
+            {
+                sb.Append(Executive(data));
+            }
+            else
+            {
+                sb.Append(Minimalist(data));
+            }
 
-                if (data.Skills != null && data.Skills.Count > 0)
+            sb.Append("</div>");
+            return sb.ToString();
+        }
+
+        // modern template layout
+        static string Modern(ResumeData data)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            // left sidebar: name, contact, skills
+            sb.Append("<div class=\"nova-sidebar\">");
+            sb.Append("<h1>" + data.FullName + "</h1>");
+            sb.Append("<div class=\"job-title\">" + data.JobTitle + "</div>");
+            sb.Append("<div class=\"section-title-side\">Contact</div>");
+            sb.Append("<div class=\"contact-info\">" + ContactItems(data) + "</div>");
+
+            if (data.Skills.Count > 0)
+            {
+                sb.Append("<div class=\"section-title-side\">Skills</div>");
+                sb.Append("<div class=\"skills-wrap\">");
+                foreach (string skill in data.Skills)
                 {
-                    sb.AppendLine($"    <div class=\"section-title-side\">{SvgCode} Tech Stack</div>");
-                    sb.AppendLine("    <div class=\"skill-pills\">");
-                    foreach(var skill in data.Skills)
+                    sb.Append("<span class=\"skill-pill\">" + skill + "</span>");
+                }
+                sb.Append("</div>");
+            }
+            sb.Append("</div>");
+
+            // main column: summary, experience, education
+            sb.Append("<div class=\"nova-main\">");
+
+            if (!string.IsNullOrEmpty(data.Summary))
+            {
+                sb.Append("<div class=\"section-title\">Profile</div>");
+                sb.Append("<div class=\"summary-text\">" + data.Summary + "</div>");
+            }
+
+            if (HasRows(data.Experience))
+            {
+                sb.Append("<div class=\"section-title\">Experience</div>");
+                sb.Append("<div class=\"timeline\">");
+                foreach (DataRow row in data.Experience.Rows)
+                {
+                    sb.Append("<div class=\"timeline-item\">");
+                    sb.Append("<div class=\"timeline-marker\"></div>");
+                    sb.Append("<div class=\"timeline-header\">");
+                    sb.Append("<h3>" + ExperienceTitle(row) + "</h3>");
+                    sb.Append("<div class=\"timeline-date\">" + DateRange(row) + "</div>");
+                    sb.Append("</div>");
+                    sb.Append(Bullets(row["Description"].ToString()));
+                    sb.Append("</div>");
+                }
+                sb.Append("</div>");
+            }
+
+            if (HasRows(data.Education))
+            {
+                sb.Append("<div class=\"section-title\">Education</div>");
+                sb.Append("<div class=\"timeline\">");
+                foreach (DataRow row in data.Education.Rows)
+                {
+                    sb.Append("<div class=\"timeline-item\">");
+                    sb.Append("<div class=\"timeline-marker\"></div>");
+                    sb.Append("<div class=\"timeline-header\">");
+                    sb.Append("<h3>" + EducationTitle(row) + "</h3>");
+                    sb.Append("<div class=\"timeline-date\">" + DateRange(row) + "</div>");
+                    sb.Append("</div>");
+                    if (row["Grade"].ToString() != "")
                     {
-                        int proficiency = rand.Next(70, 98);
-                        sb.AppendLine("      <div class=\"skill-bar-container\">");
-                        sb.AppendLine($"        <div class=\"skill-name\"><span>{skill}</span><span>{proficiency}%</span></div>");
-                        sb.AppendLine("        <div class=\"skill-track\">");
-                        sb.AppendLine($"          <div class=\"skill-fill\" style=\"width:{proficiency}%;\"></div>");
-                        sb.AppendLine("        </div>");
-                        sb.AppendLine("      </div>");
+                        sb.Append(Bullets("Grade: " + row["Grade"].ToString()));
                     }
-                    sb.AppendLine("    </div>");
+                    sb.Append("</div>");
                 }
-
-                // API QR Code
-                sb.AppendLine("    <div class=\"qr-wrapper\">");
-                sb.AppendLine($"      <img src=\"{qrUrl}\" alt=\"QR Code\" />");
-                sb.AppendLine("      <div class=\"qr-text\">Scan to connect</div>");
-                sb.AppendLine("    </div>");
-
-                sb.AppendLine("  </div>");
-
-                sb.AppendLine("  <div class=\"nova-main\">");
-                sb.AppendLine($"    <div class=\"section-title-main\">{SvgUser} Executive Summary</div>");
-                sb.AppendLine($"    <div class=\"summary-text\">{data.Summary}</div>");
-                
-                sb.AppendLine($"    <div class=\"section-title-main\">{SvgBriefcase} Professional Experience</div>");
-                sb.AppendLine("    <div class=\"timeline\">");
-                sb.AppendLine("      <div class=\"timeline-item\">");
-                sb.AppendLine("        <div class=\"timeline-header\">");
-                sb.AppendLine($"          <div class=\"timeline-title\">{data.ExperienceRoleTitle}</div>");
-                sb.AppendLine("          <div class=\"timeline-date\">Present</div>");
-                sb.AppendLine("        </div>");
-                sb.AppendLine("        <ul class=\"timeline-bullets\">");
-                foreach (var bullet in data.ExperienceAchievements.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    sb.AppendLine($"          <li>{bullet.TrimStart('-').Trim()}</li>");
-                }
-                sb.AppendLine("        </ul>");
-                sb.AppendLine("      </div>");
-                sb.AppendLine("    </div>");
-                sb.AppendLine("  </div>");
+                sb.Append("</div>");
             }
-            else if (templateId.Equals("executive", StringComparison.OrdinalIgnoreCase))
+
+            sb.Append("</div>");
+            return sb.ToString();
+        }
+
+        // executive template layout
+        static string Executive(ResumeData data)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("<div style=\"width:100%;\">");
+            sb.Append("<div class=\"header-top\">");
+            sb.Append("<h1>" + data.FullName + "</h1>");
+            sb.Append("<div class=\"job-title\">" + data.JobTitle + "</div>");
+            sb.Append("<div class=\"contact-bar\">" + ContactItems(data) + "</div>");
+            sb.Append("</div>");
+
+            if (!string.IsNullOrEmpty(data.Summary))
             {
-                // PRESTIGE (EXECUTIVE)
-                sb.AppendLine("  <div style=\"width:100%; position:relative;\">");
-                
-                // Absolute positioned QR Code for executive feel
-                sb.AppendLine("    <div class=\"qr-header-container\">");
-                sb.AppendLine($"      <img src=\"{qrUrl}\" alt=\"Digital Profile\" />");
-                sb.AppendLine("    </div>");
-
-                sb.AppendLine("    <div class=\"header-top\">");
-                sb.AppendLine($"      <h1>{data.FullName}</h1>");
-                sb.AppendLine($"      <div class=\"job-title\">{data.JobTitle}</div>");
-                sb.AppendLine("      <div class=\"contact-bar\">");
-                sb.AppendLine($"        <div class=\"contact-item\">{SvgEmail} {data.Email}</div>");
-                sb.AppendLine($"        <div class=\"contact-item\">{SvgPhone} {data.Phone}</div>");
-                sb.AppendLine("      </div>");
-                sb.AppendLine("    </div>");
-                
-                sb.AppendLine("    <div class=\"section-title\">Executive Profile</div>");
-                sb.AppendLine($"    <div class=\"summary-text\">{data.Summary}</div>");
-                
-                sb.AppendLine("    <div class=\"section-title\">Professional Experience</div>");
-                sb.AppendLine("    <div class=\"exp-grid\">");
-                sb.AppendLine("      <div class=\"exp-date\">Present</div>");
-                sb.AppendLine("      <div class=\"exp-content\">");
-                sb.AppendLine($"        <h3>{data.ExperienceRoleTitle}</h3>");
-                sb.AppendLine("        <ul>");
-                foreach (var bullet in data.ExperienceAchievements.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    sb.AppendLine($"          <li>{bullet.TrimStart('-').Trim()}</li>");
-                }
-                sb.AppendLine("        </ul>");
-                sb.AppendLine("      </div>");
-                sb.AppendLine("    </div>");
-
-                if (data.Skills != null && data.Skills.Count > 0)
-                {
-                    sb.AppendLine("    <div class=\"section-title\">Areas of Expertise</div>");
-                    sb.AppendLine("    <div class=\"skills-list\">");
-                    sb.AppendLine("      <strong>Core Competencies:</strong> " + string.Join(", ", data.Skills));
-                    sb.AppendLine("    </div>");
-                }
-                sb.AppendLine("  </div>");
+                sb.Append("<div class=\"section-title\">Profile</div>");
+                sb.Append("<div class=\"summary-text\">" + data.Summary + "</div>");
             }
-            else // minimalist
+
+            if (HasRows(data.Experience))
             {
-                // AURA (MINIMALIST)
-                sb.AppendLine("  <div class=\"aura-container\">");
-                sb.AppendLine("    <div class=\"header-area\">");
-                sb.AppendLine("      <div class=\"header-left\">");
-                sb.AppendLine($"        <h1>{data.FullName}</h1>");
-                sb.AppendLine($"        <div class=\"job-title\">{data.JobTitle}</div>");
-                sb.AppendLine("      </div>");
-                sb.AppendLine("      <div class=\"header-right\">");
-                sb.AppendLine($"        <div class=\"contact-item\">{data.Email} {SvgEmail}</div>");
-                sb.AppendLine($"        <div class=\"contact-item\">{data.Phone} {SvgPhone}</div>");
-                sb.AppendLine("      </div>");
-                sb.AppendLine("    </div>");
-                
-                sb.AppendLine("    <div class=\"section-block\">");
-                sb.AppendLine("      <div class=\"section-title\">About</div>");
-                sb.AppendLine($"      <div class=\"summary-text\">{data.Summary}</div>");
-                sb.AppendLine("    </div>");
-                
-                if (data.Skills != null && data.Skills.Count > 0)
+                sb.Append("<div class=\"section-title\">Experience</div>");
+                foreach (DataRow row in data.Experience.Rows)
                 {
-                    sb.AppendLine("    <div class=\"section-block\">");
-                    sb.AppendLine("      <div class=\"section-title\">Capabilities</div>");
-                    sb.AppendLine("      <div class=\"skill-tags\">");
-                    foreach(var skill in data.Skills)
+                    sb.Append("<div class=\"exp-grid\">");
+                    sb.Append("<div class=\"exp-date\">" + DateRange(row) + "</div>");
+                    sb.Append("<div class=\"exp-content\">");
+                    sb.Append("<h3>" + ExperienceTitle(row) + "</h3>");
+                    sb.Append(Bullets(row["Description"].ToString()));
+                    sb.Append("</div></div>");
+                }
+            }
+
+            if (HasRows(data.Education))
+            {
+                sb.Append("<div class=\"section-title\">Education</div>");
+                foreach (DataRow row in data.Education.Rows)
+                {
+                    sb.Append("<div class=\"exp-grid\">");
+                    sb.Append("<div class=\"exp-date\">" + DateRange(row) + "</div>");
+                    sb.Append("<div class=\"exp-content\">");
+                    sb.Append("<h3>" + EducationTitle(row) + "</h3>");
+                    if (row["Grade"].ToString() != "")
                     {
-                        sb.AppendLine($"        <span class=\"skill-tag\">{skill}</span>");
+                        sb.Append(Bullets("Grade: " + row["Grade"].ToString()));
                     }
-                    sb.AppendLine("      </div>");
-                    sb.AppendLine("    </div>");
+                    sb.Append("</div></div>");
                 }
-
-                sb.AppendLine("    <div class=\"section-block\">");
-                sb.AppendLine("      <div class=\"section-title\">Experience</div>");
-                sb.AppendLine("      <div class=\"exp-item\">");
-                sb.AppendLine("        <div class=\"exp-header\">");
-                sb.AppendLine($"          <div class=\"exp-title\">{data.ExperienceRoleTitle}</div>");
-                sb.AppendLine("          <div class=\"exp-date\">Present</div>");
-                sb.AppendLine("        </div>");
-                sb.AppendLine("        <ul class=\"exp-bullets\">");
-                foreach (var bullet in data.ExperienceAchievements.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    sb.AppendLine($"          <li>{bullet.TrimStart('-').Trim()}</li>");
-                }
-                sb.AppendLine("        </ul>");
-                sb.AppendLine("      </div>");
-                sb.AppendLine("    </div>");
-                sb.AppendLine("  </div>");
             }
 
-            sb.AppendLine("</div>");
+            if (data.Skills.Count > 0)
+            {
+                sb.Append("<div class=\"section-title\">Skills</div>");
+                sb.Append("<div class=\"skills-list\">" + string.Join(", ", data.Skills.ToArray()) + "</div>");
+            }
 
+            sb.Append("</div>");
+            return sb.ToString();
+        }
+
+        // minimalist template layout
+        static string Minimalist(ResumeData data)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("<div class=\"aura-container\">");
+            sb.Append("<div class=\"header-area\">");
+            sb.Append("<div class=\"header-left\">");
+            sb.Append("<h1>" + data.FullName + "</h1>");
+            sb.Append("<div class=\"job-title\">" + data.JobTitle + "</div>");
+            sb.Append("</div>");
+            sb.Append("<div class=\"header-right\">" + ContactItems(data) + "</div>");
+            sb.Append("</div>");
+
+            if (!string.IsNullOrEmpty(data.Summary))
+            {
+                sb.Append("<div class=\"section-block\">");
+                sb.Append("<div class=\"section-title\">About</div>");
+                sb.Append("<div class=\"summary-text\">" + data.Summary + "</div>");
+                sb.Append("</div>");
+            }
+
+            if (data.Skills.Count > 0)
+            {
+                sb.Append("<div class=\"section-block\">");
+                sb.Append("<div class=\"section-title\">Skills</div>");
+                sb.Append("<div class=\"skill-tags\">");
+                foreach (string skill in data.Skills)
+                {
+                    sb.Append("<span class=\"skill-tag\">" + skill + "</span>");
+                }
+                sb.Append("</div></div>");
+            }
+
+            if (HasRows(data.Experience))
+            {
+                sb.Append("<div class=\"section-block\">");
+                sb.Append("<div class=\"section-title\">Experience</div>");
+                foreach (DataRow row in data.Experience.Rows)
+                {
+                    sb.Append("<div class=\"exp-item\">");
+                    sb.Append("<div class=\"exp-header\">");
+                    sb.Append("<div class=\"exp-title\">" + ExperienceTitle(row) + "</div>");
+                    sb.Append("<div class=\"exp-date\">" + DateRange(row) + "</div>");
+                    sb.Append("</div>");
+                    sb.Append(Bullets(row["Description"].ToString()));
+                    sb.Append("</div>");
+                }
+                sb.Append("</div>");
+            }
+
+            if (HasRows(data.Education))
+            {
+                sb.Append("<div class=\"section-block\">");
+                sb.Append("<div class=\"section-title\">Education</div>");
+                foreach (DataRow row in data.Education.Rows)
+                {
+                    sb.Append("<div class=\"exp-item\">");
+                    sb.Append("<div class=\"exp-header\">");
+                    sb.Append("<div class=\"exp-title\">" + EducationTitle(row) + "</div>");
+                    sb.Append("<div class=\"exp-date\">" + DateRange(row) + "</div>");
+                    sb.Append("</div>");
+                    if (row["Grade"].ToString() != "")
+                    {
+                        sb.Append(Bullets("Grade: " + row["Grade"].ToString()));
+                    }
+                    sb.Append("</div>");
+                }
+                sb.Append("</div>");
+            }
+
+            sb.Append("</div>");
             return sb.ToString();
         }
     }
