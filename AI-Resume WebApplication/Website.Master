@@ -9,17 +9,17 @@
     <meta name="description" content="Build ATS-optimized, executive-grade resumes with real-time AI intelligence, liquid glass styling, and instant PDF exports." />
 
 
-    <link rel="stylesheet" href="assets/css/tokens.css" />
-    <link rel="stylesheet" href="assets/css/reset.css" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/layout.css" />
-    <link rel="stylesheet" href="assets/css/components.css" />
-    <link rel="stylesheet" href="assets/css/theme.css" />
-    <link rel="stylesheet" href="assets/css/animations.css" />
-    <link rel="stylesheet" href="assets/css/pages.css" />
-    <link rel="stylesheet" href="assets/css/utilities.css" />
-    <link rel="stylesheet" href="assets/css/variables.css" />
-    <link rel="stylesheet" href="assets/css/templates.css" />
+    <link rel="stylesheet" href="assets/css/tokens.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/reset.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/base.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/layout.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/components.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/theme.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/animations.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/pages.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/utilities.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/variables.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/templates.css?v=3.0" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -59,9 +59,9 @@
                     <svg class="icon-svg" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                     Resume Preview
                 </a>
-                <a href="CareerProfile.aspx" class='<%= "sidebar-item " + GetActiveClass("CareerProfile.aspx") %>'>
+                <a href="Profile.aspx" class='<%= "sidebar-item " + GetActiveClass("Profile.aspx") %>'>
                     <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    Career Profile
+                    My Profile
                 </a>
                 <a href="Templates.aspx" class='<%= "sidebar-item " + GetActiveClass("Templates.aspx") %>'>
                     <svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 5h16M4 10h16M4 15h10"/></svg>
@@ -70,10 +70,6 @@
                 <a href="Analyzer.aspx" class='<%= "sidebar-item " + GetActiveClass("Analyzer.aspx") %>'>
                     <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                     AI Analyzer
-                </a>
-                <a href="MockInterview.aspx" class='<%= "sidebar-item " + GetActiveClass("MockInterview.aspx") %>'>
-                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14h-2v-2h2zm0-4h-2V7h2z"/></svg>
-                    AI Mock Interview
                 </a>
                 <a href="Settings.aspx" class='<%= "sidebar-item " + GetActiveClass("Settings.aspx") %>'>
                     <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
@@ -85,10 +81,10 @@
                 <div class="glass-card p-4 flex items-center gap-3">
                     <div style="width:36px; height:36px; border-radius:50%; background:var(--accent-primary); display:flex; align-items:center; justify-content:center; font-weight:700; color:#FFF;">AW</div>
                     <div style="flex:1; overflow:hidden;">
-                        <h4 style="font-size:var(--text-xs); white-space:nowrap; text-overflow:ellipsis; overflow:hidden; margin:0;">Alexander Wright</h4>
+                        <h4 style="font-size:var(--text-xs); white-space:nowrap; text-overflow:ellipsis; overflow:hidden; margin:0;"><%= GetUserName() %></h4>
                         <p style="font-size:10px; color:var(--text-muted); margin:0;">Pro Subscriber</p>
                     </div>
-                    <a href="Login.aspx" title="Logout">
+                    <a href="Logout.aspx" title="Logout">
                         <svg class="icon-svg" style="width:16px; height:16px; color:var(--color-danger);" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
                     </a>
                 </div>
@@ -169,8 +165,7 @@
                                     <li><a href="ResumeBuilder.aspx">AI Resume Builder</a></li>
                                     <li><a href="Templates.aspx">Resume Templates</a></li>
                                     <li><a href="Analyzer.aspx">ATS Analyzer</a></li>
-                                    <li><a href="MockInterview.aspx">AI Mock Interview</a></li>
-                                    <li><a href="CareerProfile.aspx">Career Profile</a></li>
+                                    <li><a href="Profile.aspx">My Profile</a></li>
                                 </ul>
                             </div>
 
@@ -198,7 +193,7 @@
                         <div class="glass-divider"></div>
 
                         <div class="flex justify-between items-center" style="font-size:var(--text-xs); color:var(--text-muted);">
-                            <p>&copy; 2026 ResumeAI System Inc. All rights reserved.</p>
+                            <p>ResumeAI &bull; Autonomous Resume Intelligence</p>
                         </div>
                     </div>
                 </footer>
