@@ -10,7 +10,7 @@
         .gallery-header h1 {
             font-size: var(--text-4xl);
             font-weight: 800;
-            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            background: linear-gradient(135deg, #FFFFFF 0%, #EAAA00 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: var(--space-4);
@@ -22,8 +22,8 @@
         }
         .template-card:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(124, 58, 237, 0.2);
-            border-color: rgba(124, 58, 237, 0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(234, 170, 0, 0.25);
+            border-color: rgba(234, 170, 0, 0.45);
             z-index: 10;
         }
         
