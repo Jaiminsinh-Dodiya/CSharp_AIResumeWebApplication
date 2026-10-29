@@ -118,7 +118,7 @@ If you'd rather not run the script, or `setup.bat` fails on your machine:
 
 ### Local Database & Connection Setup
 
-The binary database files (`.mdf` / `.ldf`) are deliberately excluded from Git via `.gitignore` to prevent file locking and binary merge conflicts. Every developer maintains their own local database or file generated from `App_Data/schema.sql`.
+The binary database files (`.mdf` / `.ldf`) are deliberately excluded from Git via `.gitignore` to prevent file locking and binary merge conflicts. Every developer maintains their own local database or file generated from `App_Data/AIResume_Database.sql`.
 
 #### 1. Connection String Configuration (`Web.config`)
 
@@ -152,9 +152,9 @@ The connection string is pre-configured out-of-the-box in `AI-Resume WebApplicat
 
 ---
 
-#### 2. Initializing Your Local Database from `schema.sql`
+#### 2. Initializing Your Local Database from `AIResume_Database.sql`
 
-Can we create/update the database structure from a `.sql` file? **Yes!** The file `App_Data/schema.sql` contains the complete schema and seed data. It will create tables and sample data regardless of your `.mdf` file name or SQL Server setup.
+Can we create/update the database structure from a `.sql` file? **Yes!** The file `App_Data/AIResume_Database.sql` contains the complete schema and seed data. It will create tables and sample data regardless of your `.mdf` file name or SQL Server setup.
 
 1. **Option 1: Via Visual Studio (LocalDB)**:
    - In Visual Studio Solution Explorer, right-click the **`App_Data`** folder → **Add** → **New Item...**
@@ -162,12 +162,12 @@ Can we create/update the database structure from a `.sql` file? **Yes!** The fil
    - Set any database name (e.g., `ApplicationDatabase.mdf`) and click **Add**.
    - Double-click your `.mdf` file to open **Server Explorer**.
    - Right-click the database connection → **New Query**.
-   - Open **`App_Data/schema.sql`**, copy all text (`Ctrl+A`, `Ctrl+C`), paste into the query window, and click **Execute** (`Ctrl` + `Shift` + `E` or ▶️).
+   - Open **`App_Data/AIResume_Database.sql`**, copy all text (`Ctrl+A`, `Ctrl+C`), paste into the query window, and click **Execute** (`Ctrl` + `Shift` + `E` or ▶️).
 
 2. **Option 2: Via SQL Server Management Studio (SSMS)**:
    - Open SSMS and connect to your SQL Server instance.
    - Create a new database (e.g. `AI_Resume_DB`).
-   - Open **`App_Data/schema.sql`**, select your new database, and click **Execute**.
+   - Open **`App_Data/AIResume_Database.sql`**, select your new database, and click **Execute**.
 
 ---
 

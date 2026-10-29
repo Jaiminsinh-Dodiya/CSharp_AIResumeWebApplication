@@ -37,8 +37,8 @@ tools/
 *.pubxml.user
 *.publishproj
 PublishScripts/
-App_Data/*.mdf
-App_Data/*.ldf
+**/App_Data/*.mdf
+**/App_Data/*.ldf
 
 # Resharper / other IDE caches
 _ReSharper*/

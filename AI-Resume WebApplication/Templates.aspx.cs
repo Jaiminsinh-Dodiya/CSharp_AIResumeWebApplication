@@ -3,7 +3,7 @@ using System.Web.UI;
 
 namespace AI_Resume_WebApplication
 {
-    public partial class Templates : AppPageBase
+    public partial class Templates : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

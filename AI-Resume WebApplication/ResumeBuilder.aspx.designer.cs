@@ -87,21 +87,12 @@ namespace AI_Resume_WebApplication
         protected global::System.Web.UI.WebControls.TextBox txtSummary;
 
         /// <summary>
-        /// txtRoleTitle control.
+        /// litResumeContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRoleTitle;
-
-        /// <summary>
-        /// txtAchievements control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAchievements;
+        protected global::System.Web.UI.WebControls.Literal litResumeContent;
     }
 }

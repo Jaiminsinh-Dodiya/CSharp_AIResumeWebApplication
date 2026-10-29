@@ -3,6 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
+<asp:Content ID="NavigationOverride" ContentPlaceHolderID="NavigationContent" runat="server">
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div style="margin-bottom:var(--space-6);" class="flex items-center justify-between">
         <div>
@@ -136,4 +139,7 @@
             </div>
         </div>
     </div>
+</asp:Content>
+
+<asp:Content ID="FooterOverride" ContentPlaceHolderID="FooterContent" runat="server">
 </asp:Content>

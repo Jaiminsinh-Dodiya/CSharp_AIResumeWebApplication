@@ -8,24 +8,25 @@
     <title>ResumeAI - Autonomous AI Resume Builder &amp; Intelligence System</title>
     <meta name="description" content="Build ATS-optimized, executive-grade resumes with real-time AI intelligence, liquid glass styling, and instant PDF exports." />
 
-    <!-- Design System & Architecture CSS -->
-    <link rel="stylesheet" href="assets/css/tokens.css" />
-    <link rel="stylesheet" href="assets/css/reset.css" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/layout.css" />
-    <link rel="stylesheet" href="assets/css/components.css" />
-    <link rel="stylesheet" href="assets/css/theme.css" />
-    <link rel="stylesheet" href="assets/css/animations.css" />
-    <link rel="stylesheet" href="assets/css/pages.css" />
-    <link rel="stylesheet" href="assets/css/utilities.css" />
-    <link rel="stylesheet" href="assets/css/variables.css" />
+
+    <link rel="stylesheet" href="assets/css/tokens.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/reset.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/base.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/layout.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/components.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/theme.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/animations.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/pages.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/utilities.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/variables.css?v=3.0" />
+    <link rel="stylesheet" href="assets/css/templates.css?v=3.0" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
 
-    <!-- Ambient Canvas Background Lighting -->
+    
     <div class="ambient-canvas">
         <div class="ambient-blob blob-purple"></div>
         <div class="ambient-blob blob-indigo"></div>
@@ -34,8 +35,8 @@
 
     <form id="form1" runat="server">
 
-        <!-- ===================== APP SIDEBAR (Dashboard-style pages only) ===================== -->
-        <asp:Panel ID="pnlSidebar" runat="server" CssClass="sidebar" Visible="false">
+        
+        <div id="appSidebar" runat="server" class="sidebar" visible="false">
             <div class="sidebar-header">
                 <a href="Default.aspx" class="flex items-center gap-3">
                     <div class="stat-icon" style="width:32px; height:32px; background:var(--accent-primary-glow);">
@@ -58,9 +59,9 @@
                     <svg class="icon-svg" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                     Resume Preview
                 </a>
-                <a href="CareerProfile.aspx" class='<%= "sidebar-item " + GetActiveClass("CareerProfile.aspx") %>'>
+                <a href="Profile.aspx" class='<%= "sidebar-item " + GetActiveClass("Profile.aspx") %>'>
                     <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    Career Profile
+                    My Profile
                 </a>
                 <a href="Templates.aspx" class='<%= "sidebar-item " + GetActiveClass("Templates.aspx") %>'>
                     <svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 5h16M4 10h16M4 15h10"/></svg>
@@ -80,51 +81,48 @@
                 <div class="glass-card p-4 flex items-center gap-3">
                     <div style="width:36px; height:36px; border-radius:50%; background:var(--accent-primary); display:flex; align-items:center; justify-content:center; font-weight:700; color:#FFF;">AW</div>
                     <div style="flex:1; overflow:hidden;">
-                        <h4 style="font-size:var(--text-xs); white-space:nowrap; text-overflow:ellipsis; overflow:hidden; margin:0;">Alexander Wright</h4>
+                        <h4 style="font-size:var(--text-xs); white-space:nowrap; text-overflow:ellipsis; overflow:hidden; margin:0;"><%= GetUserName() %></h4>
                         <p style="font-size:10px; color:var(--text-muted); margin:0;">Pro Subscriber</p>
                     </div>
-                    <a href="Login.aspx" title="Logout">
+                    <a href="Logout.aspx" title="Logout">
                         <svg class="icon-svg" style="width:16px; height:16px; color:var(--color-danger);" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
                     </a>
                 </div>
             </div>
-        </asp:Panel>
+        </div>
 
-        <!-- ===================== PUBLIC TOP NAVBAR (Marketing pages only) ===================== -->
-        <asp:Panel ID="pnlPublicNavbar" runat="server" CssClass="navbar" Style="position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(10,10,20,0.85); backdrop-filter:blur(16px); border-bottom:1px solid var(--glass-border);">
-            <header class="container navbar-inner">
-                <a href="Default.aspx" class="flex items-center gap-3">
-                    <div class="stat-icon" style="width:36px; height:36px; background:var(--accent-primary-glow); border-color:var(--accent-primary);">
-                        <svg class="icon-svg" style="color:#FFF;" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                    </div>
-                    <span style="font-family:var(--font-heading); font-weight:800; font-size:var(--text-xl);" class="text-gradient-purple">ResumeAI</span>
-                </a>
-
-                <nav class="nav-links">
-                    <a href="Features.aspx" class='<%= "nav-link " + GetActiveClass("Features.aspx") %>'>Features</a>
-                    <a href="Default.aspx#how-it-works" class="nav-link">How It Works</a>
-                    <a href="Templates.aspx" class='<%= "nav-link " + GetActiveClass("Templates.aspx") %>'>Templates</a>
-                    <a href="Default.aspx#pricing" class="nav-link">Pricing</a>
-                </nav>
-
-                <asp:Panel ID="pnlGuestActions" runat="server" CssClass="flex items-center gap-3">
-                    <a href="Login.aspx" class="btn btn-ghost">Sign In</a>
-                    <a href="Register.aspx" class="btn btn-primary">
-                        Get Started Free
-                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <asp:ContentPlaceHolder ID="NavigationContent" runat="server">
+            <header class="navbar" style="position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(10,10,20,0.85); backdrop-filter:blur(16px); border-bottom:1px solid var(--glass-border);">
+                <div class="container navbar-inner">
+                    <a href="Default.aspx" class="flex items-center gap-3">
+                        <div class="stat-icon" style="width:36px; height:36px; background:var(--accent-primary-glow); border-color:var(--accent-primary);">
+                            <svg class="icon-svg" style="color:#FFF;" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <span style="font-family:var(--font-heading); font-weight:800; font-size:var(--text-xl);" class="text-gradient-purple">ResumeAI</span>
                     </a>
-                </asp:Panel>
 
-                <asp:Panel ID="pnlUserActions" runat="server" CssClass="flex items-center gap-3" Visible="false">
-                    <a href="Dashboard.aspx" class="btn btn-secondary">Dashboard</a>
-                    <a href="Login.aspx" class="btn btn-ghost" title="Logout">Sign Out</a>
-                </asp:Panel>
+                    <nav class="nav-links">
+                        <a href="Features.aspx" class='<%= "nav-link " + GetActiveClass("Features.aspx") %>'>Features</a>
+                        <a href="Default.aspx#how-it-works" class="nav-link">How It Works</a>
+                        <a href="Templates.aspx" class='<%= "nav-link " + GetActiveClass("Templates.aspx") %>'>Templates</a>
+                        <a href="Default.aspx#pricing" class="nav-link">Pricing</a>
+                    </nav>
+
+                    <div class="flex items-center gap-3">
+                        <a href="Login.aspx" class="btn btn-ghost">Sign In</a>
+                        <a href="Register.aspx" class="btn btn-primary">
+                            Get Started Free
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
             </header>
-        </asp:Panel>
+        </asp:ContentPlaceHolder>
 
-        <!-- ===================== MAIN CONTENT AREA ===================== -->
-        <div id="mainWrap" runat="server">
-            <asp:Panel ID="pnlDashboardTopbar" runat="server" CssClass="dashboard-topbar flex items-center justify-between" Visible="false">
+        <div id="mainWrap" runat="server" style="padding-top:90px; min-height:82vh;">
+
+            
+            <div id="appTopbar" runat="server" class="dashboard-topbar flex items-center justify-between" visible="false">
                 <div class="flex items-center gap-4">
                     <div style="position:relative; width:280px;">
                         <input type="text" class="form-input" placeholder="Search resumes, templates..." style="padding-left:36px;">
@@ -140,15 +138,14 @@
                         Create New Resume
                     </a>
                 </div>
-            </asp:Panel>
+            </div>
 
             <div id="contentInner" runat="server">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
 
-            <!-- Global Fixed Footer (Marketing pages only) -->
-            <asp:Panel ID="pnlFooter" runat="server">
+            <asp:ContentPlaceHolder ID="FooterContent" runat="server">
                 <footer style="border-top:1px solid var(--glass-border); padding:var(--space-16) 0 var(--space-8) 0; background:var(--bg-primary);">
                     <div class="container">
                         <div class="grid grid-cols-4 gap-8" style="margin-bottom:var(--space-12);">
@@ -168,7 +165,7 @@
                                     <li><a href="ResumeBuilder.aspx">AI Resume Builder</a></li>
                                     <li><a href="Templates.aspx">Resume Templates</a></li>
                                     <li><a href="Analyzer.aspx">ATS Analyzer</a></li>
-                                    <li><a href="CareerProfile.aspx">Career Profile</a></li>
+                                    <li><a href="Profile.aspx">My Profile</a></li>
                                 </ul>
                             </div>
 
@@ -196,12 +193,15 @@
                         <div class="glass-divider"></div>
 
                         <div class="flex justify-between items-center" style="font-size:var(--text-xs); color:var(--text-muted);">
-                            <p>&copy; 2026 ResumeAI System Inc. All rights reserved.</p>
+                            <p>ResumeAI &bull; Autonomous Resume Intelligence</p>
                         </div>
                     </div>
                 </footer>
-            </asp:Panel>
+            </asp:ContentPlaceHolder>
         </div>
+
+        <asp:ContentPlaceHolder ID="PageScripts" runat="server">
+        </asp:ContentPlaceHolder>
 
     </form>
 
