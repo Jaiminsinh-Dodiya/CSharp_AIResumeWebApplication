@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container" style="padding:var(--space-16) var(--space-4);">
-        
+
         <!-- 1. HERO HEADER -->
         <div class="text-center" style="max-width:820px; margin:0 auto var(--space-16) auto;">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-6 glass-card" style="background:rgba(234, 170, 0, 0.12); border-color:rgba(234, 170, 0, 0.35);">
@@ -23,7 +23,7 @@
 
         <!-- 2. BENTO FEATURE GRID -->
         <div class="grid grid-cols-12 gap-8 mb-20">
-            
+
             <!-- Large Card 1: Generative AI (Span 8) -->
             <div class="col-span-8 glass-card glow-border p-8 flex flex-col justify-between" style="border-radius:var(--radius-xl);">
                 <div>

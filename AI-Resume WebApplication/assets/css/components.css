@@ -22,9 +22,9 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(221, 227, 232, 0.18) 50%, 
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(221, 227, 232, 0.18) 50%,
     transparent 100%
   );
 }
@@ -243,9 +243,9 @@
 
 /* 5. Skeleton Loading Placeholders */
 .skeleton-box {
-  background: linear-gradient(90deg, 
-    rgba(221, 227, 232, 0.04) 25%, 
-    rgba(221, 227, 232, 0.09) 50%, 
+  background: linear-gradient(90deg,
+    rgba(221, 227, 232, 0.04) 25%,
+    rgba(221, 227, 232, 0.09) 50%,
     rgba(221, 227, 232, 0.04) 75%
   );
   background-size: 200% 100%;
