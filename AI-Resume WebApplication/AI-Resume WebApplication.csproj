@@ -74,12 +74,14 @@
     <Content Include="App_Data\ApplicationDatabase_log.ldf">
       <DependentUpon>ApplicationDatabase.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\schema.sql" />
+    <Content Include="App_Data\AIResume_Database.sql" />
     <Content Include="Web.config" />
     <Content Include="Website.Master" />
     <Content Include="Default.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Logout.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="AdminPanel.aspx" />
     <Content Include="Analyzer.aspx" />
     <Content Include="CareerProfile.aspx" />
     <Content Include="Dashboard.aspx" />
@@ -89,10 +91,10 @@
     <Content Include="Preview.aspx" />
     <Content Include="ResumeBuilder.aspx" />
     <Content Include="Settings.aspx" />
+    <Content Include="Profile.aspx" />
     <Content Include="Templates.aspx" />
     <Content Include="Error404.aspx" />
     <Content Include="Error500.aspx" />
-    <Content Include="MockInterview.aspx" />
     <Content Include="assets\css\animations.css" />
     <Content Include="assets\css\base.css" />
     <Content Include="assets\css\components.css" />
@@ -126,9 +128,6 @@
     <Compile Include="Website.Master.designer.cs">
       <DependentUpon>Website.Master</DependentUpon>
     </Compile>
-    <Compile Include="AppPageBase.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -139,6 +138,13 @@
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -156,6 +162,13 @@
     </Compile>
     <Compile Include="Analyzer.aspx.designer.cs">
       <DependentUpon>Analyzer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanel.aspx.cs">
+      <DependentUpon>AdminPanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPanel.aspx.designer.cs">
+      <DependentUpon>AdminPanel.aspx</DependentUpon>
     </Compile>
     <Compile Include="CareerProfile.aspx.cs">
       <DependentUpon>CareerProfile.aspx</DependentUpon>
@@ -213,6 +226,13 @@
     <Compile Include="Settings.aspx.designer.cs">
       <DependentUpon>Settings.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Templates.aspx.cs">
       <DependentUpon>Templates.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -234,14 +254,6 @@
     <Compile Include="Error500.aspx.designer.cs">
       <DependentUpon>Error500.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MockInterview.aspx.cs">
-      <DependentUpon>MockInterview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MockInterview.aspx.designer.cs">
-      <DependentUpon>MockInterview.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MockInterviewService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
